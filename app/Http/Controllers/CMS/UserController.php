@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\CMS;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\UserRequest;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
@@ -37,15 +38,21 @@ class UserController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(UserRequest $request)
     {
-        $data = $request->all();
-        $users = new User();
-        $data['password'] = Hash::make($request->password);
-        $users->fill($data);
-        $users->save();
+        try {
+            $data = $request->all();
+            $users = new User();
+            $data['password'] = Hash::make($request->password);
+            $users->fill($data);
+            $users->save();
 
-        return Redirect('users/index');
+            return Redirect('users/index');
+        }
+        catch (\Exception $e){
+            throw new \Exception($e->getMessage());
+        }
+
     }
 
     /**
@@ -99,6 +106,6 @@ class UserController extends Controller
         $data = $request->all();
         $users = User::find($id)->delete($data);
 
-        return Redirect('users/index');
+        return Redirect()->back();
     }
 }

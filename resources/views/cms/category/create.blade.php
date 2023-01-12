@@ -6,14 +6,20 @@
         <div class="py-2 ">
             <label class="w-100 h6">Name</label>
             <input type="text" name="name" placeholder="Enter name" class="w-100 py-2 rounded border-1">
+            @error('name')
+            <span class="text-danger">{{ $message }}</span>
+            @enderror
         </div>
         <div class="py-2 ">
             <label class="w-100 h6">Status</label>
-            <select name="status">
+            <select name="status" class="w-100 py-2 rounded">
                 <option value="1">Active</option>
                 <option value="2">Stopped</option>
                 <option value="3">Broken</option>
             </select>
+            @error('name')
+            <span class="text-danger">{{ $message }}</span>
+            @enderror
         </div>
         <div>
             <input type="submit" value="Create" class="btn-success">

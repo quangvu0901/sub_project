@@ -31,14 +31,14 @@
                         <td>{{ $user->id }}</td>
                         <td>{{ $user->name }}</td>
                         <td>{{ $user->email }}</td>
-                        <td>{{ optional(auth()->user()->profile)->phone }}</td>
-                        <td>{{ optional(auth()->user()->profile)->address }}</td>
-                        <td>{{ optional(auth()->user()->profile)->birthday }}</td>
+                        <td>{{ optional($user->profile)->phone }}</td>
+                        <td>{{ optional($user->profile)->address }}</td>
+                        <td>{{ optional($user->profile)->birthday }}</td>
                         <td>
                             @php
-                                if(optional(auth()->user()->profile)->gender == 1)
+                                if(optional($user->profile)->gender == 1)
                                     echo "Male";
-                                elseif(optional(auth()->user()->profile)->gender == 2)
+                                elseif(optional($user->profile)->gender == 2)
                                     echo "Female";
                                 else
                                     echo "Unknown";

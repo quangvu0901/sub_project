@@ -3,9 +3,11 @@
 namespace App\Http\Controllers\CMS;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\ProductRequest;
 use App\Models\User\Category;
 use App\Models\User\Product;
 use Illuminate\Http\Request;
+
 
 class ProductController extends Controller
 {
@@ -40,9 +42,9 @@ class ProductController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(ProductRequest $request)
     {
-        dd($request->all());
+
         $data = $request->all();
         $products = new Product();
         $products->fill($data);
@@ -62,7 +64,6 @@ class ProductController extends Controller
                 ]);
             }
         }
-
 
         return redirect('products/index');
     }
@@ -99,15 +100,13 @@ class ProductController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(ProductRequest $request, $id)
     {
-
         $data = $request->all();
         $product = Product::find($id);
         $product->fill($data);
         $product->categories()->sync($request->category);
         $product->update();
-
 
         $product->galeries()->delete();
         if ($request->hasFile('list_image')) {

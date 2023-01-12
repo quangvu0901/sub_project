@@ -30,9 +30,9 @@
                             <td>{{ $product->price }}</td>
                             <td>{{ $product->quantity }}</td>
                             <td>{{ $product->description }}</td>
-                            <td>
+                            <td class="align-left">
                                 @foreach($product->categories as $cat)
-                                    {{ $cat->name }}
+                                    {{ $cat->name }} <br/>
                                 @endforeach
                             </td>
                             <td>{{ date('d-m-Y',strtotime($product->created_at)) }}</td>

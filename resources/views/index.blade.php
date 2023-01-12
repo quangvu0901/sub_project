@@ -51,10 +51,10 @@
                         <div class="bg-success rounded-circle border border-2 border-white position-absolute end-0 bottom-0 p-1"></div>
                     </div>
                     <div class="ms-3">
-                        <h6 class="mb-0">{{ auth()->user()->name }}</h6>
+                        <h6 class="mb-0">{{ optional(auth()->user())->name }}</h6>
                         <span>
                             @php
-                                if (auth()->user()->role == 1) {
+                                if (optional(auth()->user())->role == 1) {
                                     echo "Admin";
                                 }
 
@@ -106,7 +106,7 @@
                     <div class="nav-item dropdown">
                         <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">
                             <img class="rounded-circle me-lg-2" src="{{ asset('img/1.png') }}" alt="" style="width: 50px; height: 50px;border: 1px solid">
-                            <span class="d-none d-lg-inline-flex">{{ auth()->user()->name }}</span>
+                            <span class="d-none d-lg-inline-flex">{{ optional(auth()->user())->name }}</span>
                         </a>
                         <div class="dropdown-menu dropdown-menu-end bg-light border-0 rounded-0 rounded-bottom m-0">
                             <a href="{{ route('profile.edit')}}" class="dropdown-item">My Profile</a>
