@@ -6,11 +6,19 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\ProductRequest;
 use App\Models\User\Category;
 use App\Models\User\Product;
+use App\Services\ProductService;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 
 class ProductController extends Controller
 {
+    protected $service;
+    public function __construct(ProductService $service)
+    {
+        $this->service = $service;
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -19,7 +27,7 @@ class ProductController extends Controller
     public function index()
     {
         $categories = Category::all();
-        $products = Product::search()->paginate(5);
+        $products = Product::search()->paginate(\App\Constants\Product::PRODUCT_LIST_LIMIT);
 
         return view('cms/product/index', compact('products', 'categories'));
     }
@@ -44,28 +52,41 @@ class ProductController extends Controller
      */
     public function store(ProductRequest $request)
     {
+        DB::beginTransaction();
+        try {
+            $data = $request->all();
+            $params = [
+                'name' => $data['name'],
+                'price',
+                'quantity',
+                'description',
+            ];
+            $products = new Product();
+            $products->fill($params);
 
-        $data = $request->all();
-        $products = new Product();
-        $products->fill($data);
+            $products->save();
 
-        $products->save();
+            $products->categories()->attach($request->category);
+            if ($request->hasFile('list_image')) {
+                foreach ($request->file('list_image') as $file) {
+                    $imageName = $file->getClientOriginalName();
+                    $file->move(public_path('uploads/'), $imageName);
+                    $files = $imageName;
 
-        $products->categories()->attach($request->category);
-        if ($request->hasFile('list_image')) {
-            foreach ($request->file('list_image') as $file) {
-                $imageName = $file->getClientOriginalName();
-                $file->move(public_path('uploads/'), $imageName);
-                $files = $imageName;
-
-                $products->galeries()->create([
-                    'product_id' => $products->id,
-                    'thumbnail' => $files,
-                ]);
+                    $products->galeries()->create([
+                        'product_id' => $products->id,
+                        'thumbnail' => $files,
+                    ]);
+                }
             }
+
+            DB::commit();
+            return redirect('products/index');
+        } catch (\Exception $e) {
+            DB::rollBack();
+            echo $e->getMessage();
         }
 
-        return redirect('products/index');
     }
 
     /**
@@ -102,27 +123,15 @@ class ProductController extends Controller
      */
     public function update(ProductRequest $request, $id)
     {
-        $data = $request->all();
-        $product = Product::find($id);
-        $product->fill($data);
-        $product->categories()->sync($request->category);
-        $product->update();
-
-        $product->galeries()->delete();
-        if ($request->hasFile('list_image')) {
-            foreach ($request->file('list_image') as $file) {
-                $imageName = $file->getClientOriginalName();
-                $file->move(public_path('uploads/'), $imageName);
-                $files = $imageName;
-
-                $product->galeries()->create([
-                    'product_id' => $product->id,
-                    'thumbnail' => $files,
-                ]);
-            }
+        DB::beginTransaction();
+        try {
+            $this->service->updateProduct($request, $id);
+            DB::commit();
+            return redirect('products/index');
+        } catch (\Exception $e) {
+            DB::rollBack();
+            return redirect('products/index')->with('error', $e->getMessage());
         }
-
-        return redirect('products/index');
     }
 
     /**

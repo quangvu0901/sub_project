@@ -36,7 +36,7 @@ class ProductRequest extends FormRequest
     public function messages()
     {
         return [
-            'name.required' => 'Not empty',
+            'name.required' => __('message.not_empty'),
             'name.max' => 'Not than 255 characters',
             'price.required' => 'Not empty',
             'price.numeric' => 'Price just number',

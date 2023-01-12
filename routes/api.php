@@ -22,7 +22,10 @@ Route::middleware(['api','auth','verified','check_user'])->prefix('/')->group(fu
 
 });
 
-Route::middleware('api')->prefix('/abc')->group(function (){
-    Route::post('/1',[\App\Http\Controllers\AuthController::class,'login']);
+Route::middleware('api')->prefix('/')->group(function (){
+    Route::post('/login',[\App\Http\Controllers\AuthController::class,'login']);
+    Route::get('/logout',[\App\Http\Controllers\AuthController::class,'logout']);
+    Route::post('/register',[\App\Http\Controllers\AuthController::class,'register']);
+    Route::get('/index',[\App\Http\Controllers\AuthController::class,'index']);
 });
 

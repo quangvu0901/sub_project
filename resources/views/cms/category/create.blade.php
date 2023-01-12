@@ -11,7 +11,7 @@
             @enderror
         </div>
         <div class="py-2 ">
-            <label class="w-100 h6">Status</label>
+            <label class="w-100 h6">{{ __('Status') }}</label>
             <select name="status" class="w-100 py-2 rounded">
                 <option value="1">Active</option>
                 <option value="2">Stopped</option>

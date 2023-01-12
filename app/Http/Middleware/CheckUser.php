@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 
 class CheckUser
 {
+    const ADMIN_ROLE = 1;
     /**
      * Handle an incoming request.
      *
@@ -16,7 +17,7 @@ class CheckUser
      */
     public function handle(Request $request, Closure $next)
     {
-        if(auth()->user()->role == 1){
+        if(auth()->user()->role == self::ADMIN_ROLE){
             return $next($request);
         }
         return redirect('/dashboard');
