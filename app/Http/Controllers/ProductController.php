@@ -57,6 +57,7 @@ class ProductController extends Controller
         try {
             $this->service->createProduct($request);
             DB::commit();
+
             return redirect('products/index');
         } catch (\Exception $e) {
             DB::rollBack();
@@ -103,9 +104,11 @@ class ProductController extends Controller
         try {
             $this->service->updateProduct($request, $id);
             DB::commit();
+
             return redirect('products/index');
         } catch (\Exception $e) {
             DB::rollBack();
+
             return redirect('products/index')->with('error', $e->getMessage());
         }
     }

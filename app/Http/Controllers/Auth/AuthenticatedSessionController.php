@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Auth;
 
+use App\Constants\User;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Auth\LoginRequest;
 use App\Providers\RouteServiceProvider;
@@ -31,7 +32,7 @@ class AuthenticatedSessionController extends Controller
         $request->authenticate();
 
         $request->session()->regenerate();
-        if (Auth::user()->role == 1) {
+        if (Auth::user()->role == User::ROLE_ADMIN) {
             return redirect()->intended(RouteServiceProvider::HOME);
         } else {
             return redirect()->intended(RouteServiceProvider::DASHBOARD);

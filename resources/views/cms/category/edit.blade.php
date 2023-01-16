@@ -6,15 +6,31 @@
             @csrf
 
             <div class="py-2 ">
-                <label class="w-100 h6">Name</label>
+                <label class="w-100 h6">{{ __('Name') }}</label>
                 <input type="text" name="name" class="w-100 py-2 rounded border-1"
                        value="{{ $category->name }}">
             </div>
+            <div class="py-2">
+                <label class="w-100 h-8">{{ __('Category level') }}</label>
+                <select name="parent_id" class="w-100 h-6">
+                    <option value="{{ \App\Constants\Category::PARENT_CATEGOGY }}">{{ __('Parent category') }}</option>
+                    @foreach($categories as $category)
+                        <option {{ $category->id ? 'selected':'' }} value="{{ $category->id }}">{{ $category->name }}</option>
+                    @endforeach
+                </select>
+            </div>
             <div class="py-2 ">
+                <label class="w-100 h-6">{{ __('Status') }}</label>
                 <select name="status">
-                    <option {{ $category->status == 1 ? 'selected' : '' }} value="1">Active</option>
-                    <option {{ $category->status == 2 ? 'selected' : '' }} value="2">Stopped</option>
-                    <option {{ $category->status == 3 ? 'selected' : '' }} value="3">Broken</option>
+                    <option {{ $category->status == \App\Constants\Category::ACTIVE_STATUS ? 'selected' : '' }} value="{{ \App\Constants\Category::ACTIVE_STATUS }}">
+                        {{ __('Active') }}
+                    </option>
+                    <option {{ $category->status == \App\Constants\Category::STOP_STATUS ? 'selected' : '' }} value="{{ \App\Constants\Category::STOP_STATUS }}">
+                        {{ __('Stopped') }}
+                    </option>
+                    <option {{ $category->status == \App\Constants\Category::BROKEN_STATUS ? 'selected' : '' }} value="{{ \App\Constants\Category::BROKEN_STATUS }}">
+                        {{ __('Broken') }}
+                    </option>
                 </select>
             </div>
             <div>

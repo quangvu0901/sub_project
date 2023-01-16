@@ -3,23 +3,23 @@
 @section('content')
 <div class="bg-light text-center rounded p-4">
     <div class="d-flex align-items-center justify-content-between mb-4">
-        <h6 class="mb-0">Recent Salse</h6>
-        <a class="btn btn-sm btn-primary" href="{{ route('user.create') }}"><i class="fa fa-plus"></i> Add</a>
+        <h6 class="mb-0">{{ __('List users') }}</h6>
+        <a class="btn btn-sm btn-primary" href="{{ route('user.create') }}"><i class="fa fa-plus"></i> {{ __('Add') }}</a>
     </div>
     <div class="table-responsive">
         <table class="table text-center align-middle table-bordered table-hover mb-0">
             <thead>
                 <tr class="text-dark">
-                    <th scope="col">#</th>
-                    <th scope="col">Name</th>
-                    <th scope="col">Email</th>
-                    <th scope="col">Phone</th>
-                    <th scope="col">Address</th>
-                    <th scope="col">Birthday</th>
-                    <th scope="col">Gender</th>
-                    <th scope="col">Role</th>
-                    <th scope="col">Date</th>
-                    <th scope="col">Action</th>
+                    <th scope="col">{{ __('#') }}</th>
+                    <th scope="col">{{ __('Name') }}</th>
+                    <th scope="col">{{ __('Email') }}</th>
+                    <th scope="col">{{ __('Phone') }}</th>
+                    <th scope="col">{{ __('Address') }}</th>
+                    <th scope="col">{{ __('Birthday') }}</th>
+                    <th scope="col">{{ __('Gender') }}</th>
+                    <th scope="col">{{ __('Role') }}</th>
+                    <th scope="col">{{ __('Date') }}</th>
+                    <th scope="col">{{ __('Action') }}</th>
                 </tr>
             </thead>
             <tbody>
@@ -36,9 +36,9 @@
                         <td>{{ optional($user->profile)->birthday }}</td>
                         <td>
                             @php
-                                if(optional($user->profile)->gender == 1)
+                                if(optional($user->profile)->gender == \App\Constants\User::MALE)
                                     echo "Male";
-                                elseif(optional($user->profile)->gender == 2)
+                                elseif(optional($user->profile)->gender == \App\Constants\User::FEMALE)
                                     echo "Female";
                                 else
                                     echo "Unknown";
@@ -46,7 +46,7 @@
                         </td>
                     <td>
                         @php
-                        if ($user->role == 1) {
+                        if ($user->role == \App\Constants\User::ROLE_ADMIN) {
                             echo "Admin";
                         }else{
                             echo "User";

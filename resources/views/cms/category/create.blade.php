@@ -13,18 +13,18 @@
         <div class="py-2">
             <label class="w-100 h-8">{{ __('Category level') }}</label>
             <select name="parent_id" class="w-100 h-6">
-                <option value="0">{{ __('Parent category') }}</option>
+                <option value="{{ \App\Constants\Category::PARENT_CATEGOGY }}">{{ __('Parent category') }}</option>
                 @foreach($categories as $category)
                     <option value="{{ $category->id }}">{{ $category->name }}</option>
                 @endforeach
             </select>
-        </div>
+        </div>z
         <div class="py-2 ">
             <label class="w-100 h6">{{ __('Status') }}</label>
             <select name="status" class="w-100 py-2 rounded">
-                <option value="1">{{ __('Active') }}</option>
-                <option value="2">{{ __('Stopped') }}</option>
-                <option value="3">{{ __('Broken') }}</option>
+                <option value="{{ \App\Constants\Category::ACTIVE_STATUS }}">{{ __('Active') }}</option>
+                <option value="{{ \App\Constants\Category::STOP_STATUS }}">{{ __('Stopped') }}</option>
+                <option value="{{ \App\Constants\Category::BROKEN_STATUS }}">{{ __('Broken') }}</option>
             </select>
             @error('name')
             <span class="text-danger">{{ $message }}</span>

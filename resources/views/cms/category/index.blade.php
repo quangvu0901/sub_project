@@ -4,17 +4,17 @@
     <div class="bg-light text-center rounded p-4">
         <div class="d-flex align-items-center justify-content-between mb-4">
             <h6 class="mb-0">{{ __('List categories') }}</h6>
-            <a class="btn btn-sm btn-primary" href="{{ route('category.create') }}"><i class="fa fa-plus"></i> Add</a>
+            <a class="btn btn-sm btn-primary" href="{{ route('category.create') }}"><i class="fa fa-plus"></i> {{ __('Add') }}</a>
         </div>
         <div class="table-responsive">
             <table class="table text-center align-middle table-bordered table-hover mb-0">
                 <thead>
                 <tr class="text-dark">
-                    <th scope="col">#</th>
-                    <th scope="col">Name</th>
-                    <th scope="col">Status</th>
-                    <th scope="col">Date</th>
-                    <th scope="col">Action</th>
+                    <th scope="col">{{ __('#') }}</th>
+                    <th scope="col">{{ __('Name') }}</th>
+                    <th scope="col">{{ __('Status') }}</th>
+                    <th scope="col">{{ __('Date') }}</th>
+                    <th scope="col">{{ __('Action') }}</th>
                 </tr>
                 </thead>
                 <tbody>
@@ -26,9 +26,9 @@
                             <td>{{ $category->name }}</td>
                             <td>
                                 @php
-                                if($category->status == 1){
+                                if($category->status == \App\Constants\Category::ACTIVE_STATUS){
                                     echo "Active";
-                                } elseif($category->status == 2){
+                                } elseif($category->status == \App\Constants\Category::STOP_STATUS){
                                     echo "Stopped";
                                 }else{
                                     echo "Broken";

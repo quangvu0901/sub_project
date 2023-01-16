@@ -5,28 +5,28 @@
     <form action="{{ route('product.store') }}" method="POST" enctype="multipart/form-data">
         @csrf
         <div class="py-2 ">
-            <label class="w-100 h6">Name</label>
+            <label class="w-100 h6">{{ __('Name') }}</label>
             <input type="text" name="name" placeholder="Enter name" class="w-100 py-2 rounded border-1">
             @error('name')
             <span class="text-danger">{{ $message }}</span>
             @enderror
         </div>
         <div class="py-2 ">
-            <label class="w-100 h6">Price</label>
+            <label class="w-100 h6">{{ __('Price') }}</label>
             <input type="number" name="price" placeholder="Enter price" class="w-100 py-2 rounded border-1">
             @error('price')
             <span class="text-danger">{{ $message }}</span>
             @enderror
         </div>
         <div class="py-2 ">
-            <label class="w-100 h6">Quantity</label>
+            <label class="w-100 h6">{{ __('Quantity') }}</label>
             <input type="number" name="quantity" placeholder="Enter quantity" class="w-100 py-2 rounded border-1">
             @error('quantity')
             <span class="text-danger">{{ $message }}</span>
             @enderror
         </div>
         <div class="py-2 ">
-            <label class="w-100 h6">Description</label>
+            <label class="w-100 h6">{{ __('Description') }}</label>
             <textarea name="description" placeholder="Enter description" class="w-100 py-2 rounded border-1"
                       rows="10"></textarea>
             @error('description')
@@ -34,14 +34,14 @@
             @enderror
         </div>
         <div class="py-2 ">
-            <label class="w-100 h6">Images</label>
+            <label class="w-100 h6">{{ __('Images') }}</label>
             <input type="file" name="list_image[]" class="w-100 py-2 rounded border-1" multiple="multiple">
             @error('list_image.*')
             <span class="text-danger">{{ $message }}</span>
             @enderror
         </div>
         <div class="py-2 ">
-            <label class="w-100 h6">Categories</label>
+            <label class="w-100 h6">{{ __('Categories') }}</label>
             <select class="js-example-basic-multiple w-100 py-2 rounded border-1" name="category[]" multiple="multiple">
                 @foreach($categories as $cat)
                     <option value="{{ $cat->id }}">{{ $cat->name }}</option>

@@ -6,7 +6,7 @@
         @csrf
 
         <div class="py-2 ">
-            <label class="w-100 h6">Name</label>
+            <label class="w-100 h6">{{ __('Name') }}</label>
             <input type="text" name="name" class="w-100 py-2 rounded border-1"
                    value="{{ $products->name }}">
             @error('name')
@@ -14,7 +14,7 @@
             @enderror
         </div>
         <div class="py-2 ">
-            <label class="w-100 h6">Price</label>
+            <label class="w-100 h6">{{ __('Price') }}</label>
             <input type="number" name="price" class="w-100 py-2 rounded border-1"
                    value="{{ $products->price }}">
             @error('price')
@@ -22,7 +22,7 @@
             @enderror
         </div>
         <div class="py-2 ">
-            <label class="w-100 h6">Quantity</label>
+            <label class="w-100 h6">{{ __('Quantity') }}</label>
             <input type="number" name="quantity" class="w-100 py-2 rounded border-1"
                    value="{{ $products->quantity }}">
             @error('quantity')
@@ -30,7 +30,7 @@
             @enderror
         </div>
         <div class="py-2 ">
-            <label class="w-100 h6">Description</label>
+            <label class="w-100 h6">{{ __('Description') }}</label>
             <textarea name="description" class="w-100 py-2 rounded border-1"
                       rows="10">{{ $products->description }}</textarea>
             @error('description')
@@ -38,7 +38,7 @@
             @enderror
         </div>
         <div class="py-2 ">
-            <label class="w-100 h6">More Image</label>
+            <label class="w-100 h6">{{ __('Images') }}</label>
             <input type="file" name="list_image[]" class="w-100 py-2 rounded border-1" multiple="multiple">
             @foreach($products->galeries as $galery)
                 <img src="{{ asset('uploads/'.$galery->thumbnail) }}" style="width: 100px;height: 100px">
@@ -48,7 +48,7 @@
             @enderror
         </div>
         <div class="py-2 ">
-            <label class="w-100 h6">Categories</label>
+            <label class="w-100 h6">{{ __('Categories') }}</label>
             <select class="js-example-basic-multiple w-100 py-2 rounded border-1" name="category[]" multiple="multiple">
                 @foreach($categories as $cat)
                     <option {{$products->categories->contains('id', $cat->id)?"selected":""}} value="{{ $cat->id }}">{{ $cat->name }}</option>

@@ -3,21 +3,21 @@
 @section('content')
     <div class="bg-light text-center rounded p-4">
         <div class="d-flex align-items-center justify-content-between mb-4">
-            <h6 class="mb-0">Recent Salse</h6>
-            <a class="btn btn-sm btn-primary" href="{{ route('product.create') }}"><i class="fa fa-plus"></i> Add</a>
+            <h6 class="mb-0">{{ __('List products') }}</h6>
+            <a class="btn btn-sm btn-primary" href="{{ route('product.create') }}"><i class="fa fa-plus"></i> {{ __('Add') }}</a>
         </div>
         <div class="table-responsive">
             <table class="table text-center align-middle table-bordered table-hover mb-0">
                 <thead>
                 <tr class="text-dark">
-                    <th scope="col">#</th>
-                    <th scope="col">Name</th>
-                    <th scope="col">Price</th>
-                    <th scope="col">Quantity</th>
-                    <th scope="col">Description</th>
-                    <th scope="col">Category</th>
-                    <th scope="col">Date</th>
-                    <th scope="col">Action</th>
+                    <th scope="col">{{ __('#') }}</th>
+                    <th scope="col">{{ __('Name') }}</th>
+                    <th scope="col">{{ __('Price') }}</th>
+                    <th scope="col">{{ __('Quantity') }}</th>
+                    <th scope="col">{{ __('Description') }}</th>
+                    <th scope="col">{{ __('Category') }}</th>
+                    <th scope="col">{{ __('Date') }}</th>
+                    <th scope="col">{{ __('Action') }}</th>
                 </tr>
                 </thead>
                 <tbody>

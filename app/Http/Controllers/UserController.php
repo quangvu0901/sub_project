@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Constants\Params;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\UserRequest;
 use App\Models\User;
@@ -25,7 +26,7 @@ class UserController extends Controller
      */
     public function index()
     {
-        $users = User::orderBy('created_at', 'ASC')->search()->paginate(5);
+        $users = User::orderBy('created_at', 'ASC')->search()->paginate(Params::LIMIT_SHOW);
 
         return view('cms/user/index', compact('users'));
     }
@@ -52,6 +53,7 @@ class UserController extends Controller
         try {
             $this->service->createUser($request);
             DB::commit();
+
             return Redirect('users/index');
         }
         catch (\Exception $e){
@@ -105,8 +107,8 @@ class UserController extends Controller
         }
         catch (\Exception $e){
             DB::rollBack();
-            return redirect('users/index')->with('error',$e->getMessage());
 
+            return redirect('users/index')->with('error',$e->getMessage());
         }
     }
 
