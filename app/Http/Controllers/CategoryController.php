@@ -1,14 +1,13 @@
 <?php
 
-namespace App\Http\Controllers\CMS;
+namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
-use App\Http\Requests\UserRequest;
-use App\Models\User;
+use App\Models\Category;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\DB;
 
-class UserController extends Controller
+class CategoryController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -17,9 +16,9 @@ class UserController extends Controller
      */
     public function index()
     {
-        $users = User::orderBy('created_at', 'ASC')->search()->paginate(5);
+        $categories = Category::orderBy('created_at', 'DESC')->search()->paginate(5);
 
-        return view('cms/user/index', compact('users'));
+        return view('cms/category/index', compact('categories'));
     }
 
     /**
@@ -29,7 +28,7 @@ class UserController extends Controller
      */
     public function create()
     {
-        return view('cms/user/create');
+        return view('cms/category/create');
     }
 
     /**
@@ -38,20 +37,20 @@ class UserController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(UserRequest $request)
+    public function store(Request $request)
     {
+        DB::beginTransaction();
         try {
             $data = $request->all();
-            $users = new User();
-            $data['password'] = Hash::make($request->password);
-            $users->fill($data);
-            $users->save();
-
-            return Redirect('users/index');
+            $category = Category::create($data);
+            DB::commit();
+            return redirect('categories/index');
         }
         catch (\Exception $e){
-            throw new \Exception($e->getMessage());
+            DB::rollBack();
+            return $e->getMessage();
         }
+
 
     }
 
@@ -72,12 +71,11 @@ class UserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit(Request $request, $id)
+    public function edit($id)
     {
-        // $data = $request->all();
-        $users = User::find($id);
+        $categories = Category::where('id', $id)->get();
 
-        return view('cms/user/edit', compact('users'));
+        return view('cms/category/edit', compact('categories'));
     }
 
     /**
@@ -89,10 +87,17 @@ class UserController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $data = $request->all();
-        $users = User::find($id)->update($data);
-
-        return redirect('users/index');
+        DB::beginTransaction();
+        try {
+            $data = $request->all();
+            Category::find($id)->update($data);
+            DB::commit();
+            return redirect('categories/index');
+        }
+        catch (\Exception $e){
+            DB::rollBack();
+            return redirect('categories/index');
+        }
     }
 
     /**
@@ -104,8 +109,8 @@ class UserController extends Controller
     public function destroy(Request $request, $id)
     {
         $data = $request->all();
-        $users = User::find($id)->delete($data);
+        $category = Category::find($id)->delete($data);
 
-        return Redirect()->back();
+        return redirect('categories/index');
     }
 }

@@ -24,7 +24,7 @@ class ProductRequest extends FormRequest
     public function rules()
     {
         return [
-            'name' => 'required|max:255',
+            'name' => 'required|max:10',
             'price' => 'required|numeric|min:1',
             'quantity' => 'required|numeric|min:1',
             'description' => 'required|min:20',
@@ -37,7 +37,7 @@ class ProductRequest extends FormRequest
     {
         return [
             'name.required' => __('message.not_empty'),
-            'name.max' => 'Not than 255 characters',
+            'name.max' => __('message.max_character').' 50',
             'price.required' => 'Not empty',
             'price.numeric' => 'Price just number',
             'price.min' => 'Price than 0',

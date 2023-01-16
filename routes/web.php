@@ -1,6 +1,6 @@
 <?php
 
-use App\Http\Controllers\CMS\UserController;
+use App\Http\Controllers\UserController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 
@@ -45,21 +45,21 @@ Route::middleware(['auth', 'verified','check_user'])->prefix('users')->group( fu
 });
 
 Route::middleware(['auth', 'verified','check_user'])->prefix('products')->group(function () {
-    Route::get('/index', [\App\Http\Controllers\CMS\ProductController::class, 'index'])->name('product.index');
-    Route::get('/create', [\App\Http\Controllers\CMS\ProductController::class, 'create'])->name('product.create');
-    Route::post('/store', [\App\Http\Controllers\CMS\ProductController::class, 'store'])->name('product.store');
-    Route::get('/edit/{id}', [\App\Http\Controllers\CMS\ProductController::class, 'edit'])->name('product.edit');
-    Route::post('/update/{id}', [\App\Http\Controllers\CMS\ProductController::class, 'update'])->name('product.update');
-    Route::get('/delete/{id}', [\App\Http\Controllers\CMS\ProductController::class, 'destroy'])->name('product.delete');
+    Route::get('/index', [\App\Http\Controllers\ProductController::class, 'index'])->name('product.index');
+    Route::get('/create', [\App\Http\Controllers\ProductController::class, 'create'])->name('product.create');
+    Route::post('/store', [\App\Http\Controllers\ProductController::class, 'store'])->name('product.store');
+    Route::get('/edit/{id}', [\App\Http\Controllers\ProductController::class, 'edit'])->name('product.edit');
+    Route::post('/update/{id}', [\App\Http\Controllers\ProductController::class, 'update'])->name('product.update');
+    Route::get('/delete/{id}', [\App\Http\Controllers\ProductController::class, 'destroy'])->name('product.delete');
 });
 
 Route::middleware(['auth', 'verified','check_user'])->prefix('categories')->group(function () {
-    Route::get('/index', [\App\Http\Controllers\CMS\CategoryController::class, 'index'])->name('category.index');
-    Route::get('/create', [\App\Http\Controllers\CMS\CategoryController::class, 'create'])->name('category.create');
-    Route::post('/store', [\App\Http\Controllers\CMS\CategoryController::class, 'store'])->name('category.store');
-    Route::get('/edit/{id}', [\App\Http\Controllers\CMS\CategoryController::class, 'edit'])->name('category.edit');
-    Route::post('/update/{id}', [\App\Http\Controllers\CMS\CategoryController::class, 'update'])->name('category.update');
-    Route::get('/delete/{id}', [\App\Http\Controllers\CMS\CategoryController::class, 'destroy'])->name('category.delete');
+    Route::get('/index', [\App\Http\Controllers\CategoryController::class, 'index'])->name('category.index');
+    Route::get('/create', [\App\Http\Controllers\CategoryController::class, 'create'])->name('category.create');
+    Route::post('/store', [\App\Http\Controllers\CategoryController::class, 'store'])->name('category.store');
+    Route::get('/edit/{id}', [\App\Http\Controllers\CategoryController::class, 'edit'])->name('category.edit');
+    Route::post('/update/{id}', [\App\Http\Controllers\CategoryController::class, 'update'])->name('category.update');
+    Route::get('/delete/{id}', [\App\Http\Controllers\CategoryController::class, 'destroy'])->name('category.delete');
 });
 
 

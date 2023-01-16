@@ -1,11 +1,11 @@
 <?php
 
-namespace App\Http\Controllers\CMS;
+namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\ProductRequest;
-use App\Models\User\Category;
-use App\Models\User\Product;
+use App\Models\Category;
+use App\Models\Product;
 use App\Services\ProductService;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -54,32 +54,7 @@ class ProductController extends Controller
     {
         DB::beginTransaction();
         try {
-            $data = $request->all();
-            $params = [
-                'name' => $data['name'],
-                'price',
-                'quantity',
-                'description',
-            ];
-            $products = new Product();
-            $products->fill($params);
-
-            $products->save();
-
-            $products->categories()->attach($request->category);
-            if ($request->hasFile('list_image')) {
-                foreach ($request->file('list_image') as $file) {
-                    $imageName = $file->getClientOriginalName();
-                    $file->move(public_path('uploads/'), $imageName);
-                    $files = $imageName;
-
-                    $products->galeries()->create([
-                        'product_id' => $products->id,
-                        'thumbnail' => $files,
-                    ]);
-                }
-            }
-
+            $this->service->createProduct($request);
             DB::commit();
             return redirect('products/index');
         } catch (\Exception $e) {

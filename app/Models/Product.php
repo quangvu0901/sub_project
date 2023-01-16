@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Models\User;
+namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
@@ -35,6 +35,6 @@ class Product extends Model
 
     public function galeries()
     {
-        return $this->hasMany(Galery::class, 'product_id', 'id');
+        return $this->hasMany(Ga::class, 'product_id', 'id');
     }
 }

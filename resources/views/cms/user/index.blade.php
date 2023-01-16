@@ -56,7 +56,7 @@
                     <td>{{ date('d-m-Y',strtotime($user->created_at)) }}</td>
                     <td>
                         <a class="btn btn-sm btn-success" href="{{ route('user.edit',$user->id) }}"><i class="fa fa-pen"></i> </a>
-                        <a class="btn btn-sm btn-danger" href="{{ route('user.delete',$user->id) }}"><i class="fa fa-trash"></i> </a>
+                        <a class="btn btn-sm btn-danger" href="{{ route('user.delete',$user->id) }}" onclick="return confirm('Are you sure?')"><i class="fa fa-trash"></i> </a>
                     </td>
                 </tr>
                 @endforeach

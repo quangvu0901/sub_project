@@ -38,7 +38,7 @@
                             <td>{{ date('d-m-Y',strtotime($category->created_at)) }}</td>
                             <td>
                                 <a class="btn btn-sm btn-success" href="{{ route('category.edit',$category->id) }}"><i class="fa fa-pen"></i> {{--Edit--}}</a>
-                                <a class="btn btn-sm btn-danger" href="{{ route('category.delete',$category->id) }}"><i class="fa fa-trash"></i> {{--Delete--}}</a>
+                                <a class="btn btn-sm btn-danger" href="{{ route('category.delete',$category->id) }}" onclick="return confirm('Are you sure?')"><i class="fa fa-trash"></i> {{--Delete--}}</a>
                             </td>
                         </tr>
                     @endforeach

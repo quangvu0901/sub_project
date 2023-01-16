@@ -38,7 +38,7 @@
                             <td>{{ date('d-m-Y',strtotime($product->created_at)) }}</td>
                             <td>
                                 <a class="btn btn-sm btn-success" href="{{ route('product.edit',$product->id) }}"><i class="fa fa-pen"></i> {{--Edit--}}</a>
-                                <a class="btn btn-sm btn-danger" href="{{ route('product.delete',$product->id) }}"><i class="fa fa-trash"></i> {{--Delete--}}</a>
+                                <a class="btn btn-sm btn-danger" href="{{ route('product.delete',$product->id) }}" onclick="return confirm('Are you sure?')"><i class="fa fa-trash"></i> {{--Delete--}}</a>
                             </td>
                         </tr>
                     @endforeach
