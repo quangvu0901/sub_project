@@ -3,7 +3,7 @@
 @section('content')
     <div class="bg-light text-center rounded p-4">
         <div class="d-flex align-items-center justify-content-between mb-4">
-            <h6 class="mb-0">Recent Salse</h6>
+            <h6 class="mb-0">{{ __('List categories') }}</h6>
             <a class="btn btn-sm btn-primary" href="{{ route('category.create') }}"><i class="fa fa-plus"></i> Add</a>
         </div>
         <div class="table-responsive">

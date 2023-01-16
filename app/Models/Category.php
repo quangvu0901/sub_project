@@ -11,7 +11,7 @@ class Category extends Model
 
     public $table = 'categories';
 
-    protected $fillable = ['name', 'status'];
+    protected $fillable = ['name', 'status','parent_id'];
 
     public function scopeSearch($query)
     {

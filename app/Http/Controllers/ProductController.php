@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Constants\Params;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\ProductRequest;
 use App\Models\Category;
@@ -27,7 +28,7 @@ class ProductController extends Controller
     public function index()
     {
         $categories = Category::all();
-        $products = Product::search()->paginate(\App\Constants\Product::PRODUCT_LIST_LIMIT);
+        $products = Product::search()->paginate(Params::LIMIT_SHOW);
 
         return view('cms/product/index', compact('products', 'categories'));
     }

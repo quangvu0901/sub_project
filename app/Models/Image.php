@@ -5,13 +5,13 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Galery extends Model
+class Image extends Model
 {
     use HasFactory;
 
-    public $table = 'galeries';
+    public $table = 'image';
 
-    protected $fillable = ['id', 'thumbnail'];
+    protected $fillable = ['id', 'image'];
 
     public function products()
     {

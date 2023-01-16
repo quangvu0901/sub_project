@@ -10,6 +10,15 @@
             <span class="text-danger">{{ $message }}</span>
             @enderror
         </div>
+        <div class="py-2">
+            <label class="w-100 h-8">{{ __('Category level') }}</label>
+            <select name="parent_id" class="w-100 h-6">
+                <option value="0">{{ __('Parent category') }}</option>
+                @foreach($categories as $category)
+                    <option value="{{ $category->id }}">{{ $category->name }}</option>
+                @endforeach
+            </select>
+        </div>
         <div class="py-2 ">
             <label class="w-100 h6">{{ __('Status') }}</label>
             <select name="status" class="w-100 py-2 rounded">

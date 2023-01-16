@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Constants\Params;
 use App\Http\Controllers\Controller;
 use App\Models\Category;
 use Illuminate\Http\Request;
@@ -16,7 +17,7 @@ class CategoryController extends Controller
      */
     public function index()
     {
-        $categories = Category::orderBy('created_at', 'DESC')->search()->paginate(5);
+        $categories = Category::search()->paginate(Params::LIMIT_SHOW);
 
         return view('cms/category/index', compact('categories'));
     }
@@ -28,13 +29,16 @@ class CategoryController extends Controller
      */
     public function create()
     {
-        return view('cms/category/create');
+        $categories = Category::where('parent_id', \App\Constants\Category::PARENT_CATEGOGY)->where('status',
+            \App\Constants\Category::ACTIVE_STATUS)->get();
+
+        return view('cms/category/create', compact('categories'));
     }
 
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param \Illuminate\Http\Request $request
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
@@ -42,12 +46,13 @@ class CategoryController extends Controller
         DB::beginTransaction();
         try {
             $data = $request->all();
-            $category = Category::create($data);
+            $categories = Category::create($data);
             DB::commit();
+
             return redirect('categories/index');
-        }
-        catch (\Exception $e){
+        } catch (\Exception $e) {
             DB::rollBack();
+
             return $e->getMessage();
         }
 
@@ -57,7 +62,7 @@ class CategoryController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
+     * @param int $id
      * @return \Illuminate\Http\Response
      */
     public function show($id)
@@ -68,12 +73,13 @@ class CategoryController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  $id
+     * @param int $id
      * @return \Illuminate\Http\Response
      */
     public function edit($id)
     {
-        $categories = Category::where('id', $id)->get();
+        $categories = Category::where('id', $id)->where('parent_id',
+            \App\Constants\Category::PARENT_CATEGOGY)->where('status', \App\Constants\Category::ACTIVE_STATUS)->get();
 
         return view('cms/category/edit', compact('categories'));
     }
@@ -81,8 +87,8 @@ class CategoryController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
+     * @param \Illuminate\Http\Request $request
+     * @param int $id
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, $id)
@@ -92,10 +98,11 @@ class CategoryController extends Controller
             $data = $request->all();
             Category::find($id)->update($data);
             DB::commit();
+
             return redirect('categories/index');
-        }
-        catch (\Exception $e){
+        } catch (\Exception $e) {
             DB::rollBack();
+
             return redirect('categories/index');
         }
     }
@@ -103,7 +110,7 @@ class CategoryController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
+     * @param int $id
      * @return \Illuminate\Http\Response
      */
     public function destroy(Request $request, $id)
