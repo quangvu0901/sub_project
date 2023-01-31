@@ -27,9 +27,9 @@ class ProductService
                 $file->move(public_path('uploads/'), $imageName);
                 $files = $imageName;
 
-                $products->galeries()->create([
+                $products->images()->create([
                     'product_id' => $products->id,
-                    'thumbnail' => $files,
+                    'image' => $files,
                 ]);
             }
         }
@@ -49,16 +49,16 @@ class ProductService
         $product->categories()->sync($request->category);
         $product->update();
 
-        $product->galeries()->delete();
+        $product->images()->delete();
         if ($request->hasFile('list_image')) {
             foreach ($request->file('list_image') as $file) {
                 $imageName = $file->getClientOriginalName();
                 $file->move(public_path('uploads/'), $imageName);
                 $files = $imageName;
 
-                $product->galeries()->create([
+                $product->images()->create([
                     'product_id' => $product->id,
-                    'thumbnail' => $files,
+                    'image' => $files,
                 ]);
             }
         }

@@ -30,7 +30,7 @@
                 <select name="role" class="w-100">
                     <option value="">{{ __('--- Role ---') }}</option>
                     <option value="{{ \App\Constants\User::ROLE_ADMIN }}">{{ __('Admin') }}</option>
-                    <option value="{{ \App\Constants\User::ROLE_USER }}">{{ __('User') }}</option>
+                    <option value="{{ \App\Constants\User::ROLE_USER }}">{{ __('Users') }}</option>
                 </select>
                 @error('role')
                 <span class="text-danger">{{ $message }}</span>

@@ -3,7 +3,7 @@
 @section('content')
 <div class="bg-light text-center rounded p-4">
     <div class="d-flex align-items-center justify-content-between mb-4">
-        <h6 class="mb-0">{{ __('List users') }}</h6>
+        <h3 class="mb-0">{{ __('List users') }} <a class="h6">({{ count($users) }})</a> </h3>
         <a class="btn btn-sm btn-primary" href="{{ route('user.create') }}"><i class="fa fa-plus"></i> {{ __('Add') }}</a>
     </div>
     <div class="table-responsive">
@@ -49,7 +49,7 @@
                         if ($user->role == \App\Constants\User::ROLE_ADMIN) {
                             echo "Admin";
                         }else{
-                            echo "User";
+                            echo "Users";
                         }
                     @endphp
                     </td>

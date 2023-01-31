@@ -18,7 +18,7 @@
                     <option value="{{ $category->id }}">{{ $category->name }}</option>
                 @endforeach
             </select>
-        </div>z
+        </div>
         <div class="py-2 ">
             <label class="w-100 h6">{{ __('Status') }}</label>
             <select name="status" class="w-100 py-2 rounded">

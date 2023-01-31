@@ -40,7 +40,7 @@
         <div class="py-2 ">
             <label class="w-100 h6">{{ __('Images') }}</label>
             <input type="file" name="list_image[]" class="w-100 py-2 rounded border-1" multiple="multiple">
-            @foreach($products->galeries as $galery)
+            @foreach($products->images as $galery)
                 <img src="{{ asset('uploads/'.$galery->thumbnail) }}" style="width: 100px;height: 100px">
             @endforeach
             @error('list_image.*')

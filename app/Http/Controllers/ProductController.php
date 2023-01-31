@@ -85,7 +85,7 @@ class ProductController extends Controller
      */
     public function edit($id)
     {
-        $products = Product::with('galeries')->find($id);
+        $products = Product::with('images')->find($id);
         $categories = Category::all();
 
         return view('cms/product/edit', compact('products', 'categories'));
@@ -126,4 +126,6 @@ class ProductController extends Controller
 
         return redirect('products/index')->with('flash_message', 'Product deleted successfully!');
     }
+
+
 }

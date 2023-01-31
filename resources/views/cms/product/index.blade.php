@@ -6,6 +6,7 @@
             <h6 class="mb-0">{{ __('List products') }}</h6>
             <a class="btn btn-sm btn-primary" href="{{ route('product.create') }}"><i class="fa fa-plus"></i> {{ __('Add') }}</a>
         </div>
+
         <div class="table-responsive">
             <table class="table text-center align-middle table-bordered table-hover mb-0">
                 <thead>

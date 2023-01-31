@@ -24,7 +24,7 @@
                     <label class="w-100 h6">{{ __('Role') }}</label>
                     <select name="role">
                         <option {{ $users->role == \App\Constants\User::ROLE_ADMIN ? 'selected' : '' }} value="{{ \App\Constants\User::ROLE_ADMIN }}">{{ __('Admin') }}</option>
-                        <option {{ $users->role == \App\Constants\User::ROLE_USER ? 'selected' : '' }} value="{{ \App\Constants\User::ROLE_USER }}">{{ __('User') }}</option>
+                        <option {{ $users->role == \App\Constants\User::ROLE_USER ? 'selected' : '' }} value="{{ \App\Constants\User::ROLE_USER }}">{{ __('Users') }}</option>
                     </select>
                 </div>
 
