@@ -49,7 +49,7 @@ class ProductService
         $product->categories()->sync($request->category);
         $product->update();
 
-        $product->images()->delete();
+//        $product->images()->delete();
         if ($request->hasFile('list_image')) {
             foreach ($request->file('list_image') as $file) {
                 $imageName = $file->getClientOriginalName();

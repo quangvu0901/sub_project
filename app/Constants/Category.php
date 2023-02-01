@@ -10,4 +10,6 @@ class Category
     CONST ACTIVE_STATUS = 1;
     CONST STOP_STATUS = 2;
     CONST BROKEN_STATUS = 3;
+
+
 }

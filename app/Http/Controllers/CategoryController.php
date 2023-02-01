@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Constants\Params;
 use App\Http\Controllers\Controller;
 use App\Models\Category;
+use App\Models\SubCategory;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
@@ -17,6 +18,7 @@ class CategoryController extends Controller
      */
     public function index()
     {
+
         $categories = Category::search()->paginate(Params::LIMIT_SHOW);
 
         return view('cms/category/index', compact('categories'));
@@ -29,8 +31,7 @@ class CategoryController extends Controller
      */
     public function create()
     {
-        $categories = Category::where('parent_id', \App\Constants\Category::PARENT_CATEGOGY)->where('status',
-            \App\Constants\Category::ACTIVE_STATUS)->get();
+        $categories = Category::where('status',\App\Constants\Category::ACTIVE_STATUS)->get();
 
         return view('cms/category/create', compact('categories'));
     }
@@ -46,7 +47,11 @@ class CategoryController extends Controller
         DB::beginTransaction();
         try {
             $data = $request->all();
-            $categories = Category::create($data);
+            $categories = new Category();
+            $categories->fill($data);
+            $categories->save();
+
+            $categories->subCats()->attach($request->parent_id);
             DB::commit();
 
             return redirect('categories/index');
@@ -78,10 +83,10 @@ class CategoryController extends Controller
      */
     public function edit($id)
     {
-        $categories = Category::where('id', $id)->where('parent_id',
-            \App\Constants\Category::PARENT_CATEGOGY)->where('status', \App\Constants\Category::ACTIVE_STATUS)->get();
+        $subs = SubCategory::all();
+        $categories = Category::where('status', \App\Constants\Category::ACTIVE_STATUS)->where('id',$id)->get();
 
-        return view('cms/category/edit', compact('categories'));
+        return view('cms/category/edit', compact('categories','subs'));
     }
 
     /**
@@ -96,7 +101,10 @@ class CategoryController extends Controller
         DB::beginTransaction();
         try {
             $data = $request->all();
-            Category::find($id)->update($data);
+            $categories = Category::find($id);
+            $categories->fill($data);
+            $categories->subCats()->sync($request->parent_id);
+            $categories->update();
             DB::commit();
 
             return redirect('categories/index');

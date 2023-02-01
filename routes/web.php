@@ -2,8 +2,9 @@
 
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\ProfileController;
+use App\Models\Category;
 use Illuminate\Support\Facades\Route;
-
+use App\Constants\Params;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
