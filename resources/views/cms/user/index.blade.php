@@ -1,5 +1,5 @@
 @extends('index')
-@dd(\Illuminate\Support\Facades\Auth::user())
+
 @section('content')
 <div class="bg-light text-center rounded p-4">
     <div class="d-flex align-items-center justify-content-between mb-4">
