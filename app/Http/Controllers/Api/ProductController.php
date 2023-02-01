@@ -10,11 +10,12 @@ use Illuminate\Http\Request;
 
 class ProductController extends Controller
 {
-    public function index(){
-        $categories = Category::all();
+    public function index()
+    {
+
         $products = Product::search()->paginate(Params::LIMIT_SHOW);
 
         return response()->json($products);
     }
-    
+
 }

@@ -35,11 +35,11 @@ Route::middleware('api')->prefix('/products')->group(function(){
     Route::get('index',[ProductController::class,'index']);
 });
 
-Route::middleware('api')->prefix('/categories')->group(function(){
+Route::prefix('/categories')->group(function(){
     Route::get('index',[CategoryController::class,'index']);
 });
 
-Route::middleware('api')->prefix('profile')->group(function (){
-    Route::get('index',[\App\Http\Controllers\Api\ProfileController::class,'index']);
-    Route::post('update',[\App\Http\Controllers\Api\ProfileController::class,'update']);
+Route::prefix('profile')->group(function (){
+    Route::get('get-user',[\App\Http\Controllers\Api\ProfileController::class,'getUser']);
+    Route::put('update',[\App\Http\Controllers\Api\ProfileController::class,'update']);
 });

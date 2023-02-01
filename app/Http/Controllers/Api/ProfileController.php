@@ -5,32 +5,48 @@ namespace App\Http\Controllers\Api;
 use App\Http\Controllers\Controller;
 use App\Models\User;
 use Illuminate\Http\Request;
+//use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Redirect;
+use PHPOpenSourceSaver\JWTAuth\Facades\JWTAuth;
 
 class ProfileController extends Controller
 {
-    public function index(){
-        $user = Auth::user();
-
-        return response()->json($user);
+    public  function  __construct()
+    {
+        Auth::setDefaultDriver('api');
     }
+
+    public function getUser()
+    {
+        return response()->json([
+            'status' => 'success',
+            'user' => Auth::user(),
+            'authorisation' => [
+                'token' => Auth::refresh(),
+                'type' => 'bearer',
+            ]
+        ]);
+    }
+
     public function update(Request $request)
     {
-        $users = User::findOrFail(Auth::user()->id);
-        $users->profile()->updateOrCreate([
-            'user_id' => $request->user()->id,
-        ],
+        $user = User::findOrFail(Auth::user()->id);
+        $user->profile()->updateOrCreate(
+            ['user_id' => $request->user()->id],
             [
                 'phone' => $request->phone,
                 'address' => $request->address,
                 'birthday' => $request->birthday,
                 'gender' => $request->gender,
-            ]);
-
+            ]
+        );
+        $profile = User::find(Auth::user()->id)->profile;
+        $user['profile'] = $profile;
         return response()->json([
-            'message' => 'Successfully',
-            'information' => $users,
+            'status' => 'success',
+            'message' => 'Successfully edit profile',
+            'user' => $user,
+            //    'profile' =>$profile
         ]);
     }
 }

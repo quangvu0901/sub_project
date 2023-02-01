@@ -9,7 +9,8 @@ use Illuminate\Http\Request;
 
 class CategoryController extends Controller
 {
-    public function index(){
+    public function index()
+    {
         $categories = Category::search()->paginate(Params::LIMIT_SHOW);
 
         return response()->json($categories);
