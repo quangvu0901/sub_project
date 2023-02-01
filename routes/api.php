@@ -3,6 +3,7 @@
 use App\Http\Controllers\Api\ProductController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\Api\CategoryController;
 
 /*
 |--------------------------------------------------------------------------
@@ -35,5 +36,5 @@ Route::middleware('api')->prefix('/products')->group(function(){
 });
 
 Route::middleware('api')->prefix('/categories')->group(function(){
-    Route::get('index',[\App\Http\Controllers\Api\CategoryController::class,'index']);
+    Route::get('index',[CategoryController::class,'index']);
 });
