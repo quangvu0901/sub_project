@@ -51,6 +51,7 @@ class CategoryController extends Controller
             $categories->fill($data);
             $categories->save();
 
+
 //            $categories->subCats()->attach($request->parent_id);
             DB::commit();
 
