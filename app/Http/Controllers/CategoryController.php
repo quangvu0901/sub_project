@@ -51,7 +51,7 @@ class CategoryController extends Controller
             $categories->fill($data);
             $categories->save();
 
-            $categories->subCats()->attach($request->parent_id);
+//            $categories->subCats()->attach($request->parent_id);
             DB::commit();
 
             return redirect('categories/index');
@@ -103,7 +103,7 @@ class CategoryController extends Controller
             $data = $request->all();
             $categories = Category::find($id);
             $categories->fill($data);
-            $categories->subCats()->sync($request->parent_id);
+//            $categories->subCats()->sync($request->parent_id);
             $categories->update();
             DB::commit();
 
