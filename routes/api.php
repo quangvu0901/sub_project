@@ -38,3 +38,8 @@ Route::middleware('api')->prefix('/products')->group(function(){
 Route::middleware('api')->prefix('/categories')->group(function(){
     Route::get('index',[CategoryController::class,'index']);
 });
+
+Route::middleware('api')->prefix('profile')->group(function (){
+    Route::get('index',[\App\Http\Controllers\Api\ProfileController::class,'index']);
+    Route::post('update',[\App\Http\Controllers\Api\ProfileController::class,'update']);
+});
