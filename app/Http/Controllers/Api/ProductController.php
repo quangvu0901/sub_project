@@ -28,9 +28,10 @@ class ProductController extends Controller
         ]);
     }
 
-    function search($name)
+    function search(Request $request)
     {
-        $result = Product::with('image')->where('name', 'LIKE', '%' . $name . '%')->paginate(Params::LIMIT_SHOW);
+        $param = $request->input('keyword');
+        $result = Product::with('image')->where('name', 'LIKE', '%' . $param . '%')->paginate(Params::LIMIT_SHOW);
         if (count($result)) {
             return Response()->json($result);
         } else {

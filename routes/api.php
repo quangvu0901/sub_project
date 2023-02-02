@@ -34,10 +34,10 @@ Route::middleware('api')->prefix('/')->group(function (){
 Route::middleware('api')->prefix('/products')->group(function(){
     Route::get('getOne',[ProductController::class,'getProductWithOneImg']);
     Route::get('getAll',[ProductController::class,'getProductWithAllImg']);
-    Route::get('search/{name}',[ProductController::class,'search']);
+    Route::get('search',[ProductController::class,'search']);
 });
 
-Route::prefix('/categories')->group(function(){
+Route::middleware('api')->prefix('/categories')->group(function(){
     Route::get('getCategories',[CategoryController::class,'getCategories']);
 });
 

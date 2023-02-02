@@ -82,7 +82,7 @@
             </nav>
         </div>
 
-        <div class="content" style="margin: 0 0 0 100px;width: 100%;">
+        <div class="content" >
 
             <nav class="navbar navbar-expand px-4 py-1">
                 <a href="" class="navbar-brand d-flex d-lg-none me-4">
