@@ -9,7 +9,7 @@ use Illuminate\Http\Request;
 
 class CategoryController extends Controller
 {
-    public function index()
+    public function getCategories()
     {
         $categories = Category::paginate(Params::LIMIT_SHOW);
 

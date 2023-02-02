@@ -10,9 +10,18 @@ use Illuminate\Http\Request;
 
 class ProductController extends Controller
 {
-    public function index()
+    public function getProductWithOneImg()
     {
         $products = Product::with('image')->paginate(Params::LIMIT_SHOW);
+
+        return response()->json([
+            'product' => $products,
+        ]);
+    }
+
+    public function getProductWithAllImg()
+    {
+        $products = Product::with('images')->paginate(Params::LIMIT_SHOW);
 
         return response()->json([
             'product' => $products,

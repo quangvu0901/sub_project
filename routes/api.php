@@ -32,15 +32,16 @@ Route::middleware('api')->prefix('/')->group(function (){
 
 
 Route::middleware('api')->prefix('/products')->group(function(){
-    Route::get('index',[ProductController::class,'index']);
+    Route::get('getOne',[ProductController::class,'getProductWithOneImg']);
+    Route::get('getAll',[ProductController::class,'getProductWithAllImg']);
     Route::get('search/{name}',[ProductController::class,'search']);
 });
 
 Route::prefix('/categories')->group(function(){
-    Route::get('index',[CategoryController::class,'index']);
+    Route::get('getCategories',[CategoryController::class,'getCategories']);
 });
 
 Route::prefix('profile')->group(function (){
-    Route::get('get-user',[\App\Http\Controllers\Api\ProfileController::class,'getUser']);
-    Route::put('update',[\App\Http\Controllers\Api\ProfileController::class,'update']);
+    Route::get('getUser',[\App\Http\Controllers\Api\ProfileController::class,'getUser']);
+    Route::put('updateUser',[\App\Http\Controllers\Api\ProfileController::class,'update']);
 });
