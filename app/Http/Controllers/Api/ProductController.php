@@ -30,7 +30,7 @@ class ProductController extends Controller
 
     function search($name)
     {
-        $result = Product::where('name', 'LIKE', '%' . $name . '%')->paginate(Params::LIMIT_SHOW);
+        $result = Product::with('image')->where('name', 'LIKE', '%' . $name . '%')->paginate(Params::LIMIT_SHOW);
         if (count($result)) {
             return Response()->json($result);
         } else {
