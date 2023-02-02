@@ -18,9 +18,8 @@ class ProfileController extends Controller
 
     public function getUser()
     {
-
         $profile = User::find(Auth::user()->id)->profile;
-        $user['profile'] = $profile;
+        $user = $profile;
         return response()->json([
             'status' => 'success',
             $user,
