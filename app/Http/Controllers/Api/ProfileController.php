@@ -23,10 +23,8 @@ class ProfileController extends Controller
         $user['profile'] = $profile;
         return response()->json([
             'status' => 'success',
-            'user' => [
-                'user' => Auth::user(),
-                $user
-            ],
+            $user,
+            'user' => Auth::user()
         ]);
     }
 
