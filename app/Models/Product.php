@@ -22,7 +22,7 @@ class Product extends Model
     public function scopeSearch($query)
     {
         if ($keyword = request()->keyword) {
-            $query = $query->where('name', 'like', '%'.$keyword.'%');
+            $query = $query->where('name', 'like', '%' . $keyword . '%');
         }
 
         return $query;
@@ -35,8 +35,11 @@ class Product extends Model
 
     public function images()
     {
-        return $this->hasMany(Image::class,'product_id','id');
+        return $this->hasMany(Image::class, 'product_id', 'id');
     }
 
-
+    public function image()
+    {
+        return $this->hasOne(Image::class);
+    }
 }

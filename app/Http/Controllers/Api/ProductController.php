@@ -12,7 +12,7 @@ class ProductController extends Controller
 {
     public function index()
     {
-        $products = Product::with('images')->paginate(Params::LIMIT_SHOW);
+        $products = Product::with('image')->paginate(Params::LIMIT_SHOW);
 
         return response()->json([
             'product' => $products,
