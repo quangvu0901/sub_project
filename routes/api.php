@@ -33,6 +33,7 @@ Route::middleware('api')->prefix('/')->group(function (){
 
 Route::middleware('api')->prefix('/products')->group(function(){
     Route::get('index',[ProductController::class,'index']);
+    Route::get('search/{name}',[ProductController::class,'search']);
 });
 
 Route::prefix('/categories')->group(function(){

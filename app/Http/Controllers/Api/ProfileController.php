@@ -3,11 +3,10 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
+use App\Models\Product;
 use App\Models\User;
 use Illuminate\Http\Request;
-//use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Auth;
-use PHPOpenSourceSaver\JWTAuth\Facades\JWTAuth;
 
 class ProfileController extends Controller
 {
@@ -22,7 +21,7 @@ class ProfileController extends Controller
         $user = $profile;
         return response()->json([
             'status' => 'success',
-            $user,
+            'profile' => $user,
             'user' => Auth::user()
         ]);
     }
@@ -49,4 +48,6 @@ class ProfileController extends Controller
             //    'profile' =>$profile
         ]);
     }
+
+
 }

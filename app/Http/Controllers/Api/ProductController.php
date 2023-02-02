@@ -18,4 +18,16 @@ class ProductController extends Controller
         return response()->json($products);
     }
 
+    function search($name)
+    {
+        $result = Product::where('name', 'LIKE', '%'. $name. '%')->paginate(Params::LIMIT_SHOW);
+        if(count($result)){
+            return Response()->json($result);
+        }
+        else
+        {
+            return response()->json(['Result' => 'No Data not found'], 404);
+        }
+    }
+
 }
