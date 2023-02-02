@@ -11,7 +11,7 @@ class CategoryController extends Controller
 {
     public function index()
     {
-        $categories = Category::search()->paginate(Params::LIMIT_SHOW);
+        $categories = Category::paginate(Params::LIMIT_SHOW);
 
         return response()->json($categories);
     }

@@ -12,20 +12,19 @@ class ProductController extends Controller
 {
     public function index()
     {
+        $products = Product::with('images')->paginate(Params::LIMIT_SHOW);
 
-        $products = Product::search()->paginate(Params::LIMIT_SHOW);
-
-        return response()->json($products);
+        return response()->json([
+            'product' => $products,
+        ]);
     }
 
     function search($name)
     {
-        $result = Product::where('name', 'LIKE', '%'. $name. '%')->paginate(Params::LIMIT_SHOW);
-        if(count($result)){
+        $result = Product::where('name', 'LIKE', '%' . $name . '%')->paginate(Params::LIMIT_SHOW);
+        if (count($result)) {
             return Response()->json($result);
-        }
-        else
-        {
+        } else {
             return response()->json(['Result' => 'No Data not found'], 404);
         }
     }

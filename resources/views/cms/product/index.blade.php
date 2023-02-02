@@ -36,6 +36,7 @@
                                     {{ $cat->name }} <br/>
                                 @endforeach
                             </td>
+
                             <td>{{ date('d-m-Y',strtotime($product->created_at)) }}</td>
                             <td>
                                 <a class="btn btn-sm btn-success" href="{{ route('product.edit',$product->id) }}"><i class="fa fa-pen"></i> {{--Edit--}}</a>
