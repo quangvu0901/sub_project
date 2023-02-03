@@ -10,21 +10,12 @@
             <span class="text-danger">{{ $message }}</span>
             @enderror
         </div>
-        {{-- <div class="py-2">
+         <div class="py-2">
             <label class="w-100 h-8">{{ __('Category level') }}</label>
-            <select name="parent_id[]" class="w-100 h-6">
+            <select name="parent_id" class="w-100 h-6">
                 <option value="{{ \App\Constants\Category::PARENT_CATEGOGY }}">{{ __('---Parent category---') }}</option>
                 @foreach($categories as $category)
                     <option value="{{ $category->id }}">{{ $category->name }}</option>
-                @endforeach
-            </select>
-        </div> --}}
-        <div class="py-2 ">
-            <label class="w-100 h6">{{ __('Category level') }}</label>
-            <select class="js-example-basic-multiple w-100 py-2 rounded border-1" name="parent_id[]" multiple="multiple">
-                <option value="0">{{ __('Parent category') }}</option>
-                @foreach($categories as $cat)
-                    <option value="{{ $cat->id }}">{{ $cat->name }}</option>
                 @endforeach
             </select>
         </div>

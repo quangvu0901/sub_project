@@ -20,6 +20,7 @@
                     </tr>
                 </thead>
                 <tbody>
+{{--                @dd($categories)--}}
                     @if (isset($categories))
                         @foreach ($categories as $category)
                             <tr>
@@ -37,9 +38,7 @@
                                     @endphp
                                 </td>
                                 <td>
-{{--                                    @foreach ($category->subCats as $cats)--}}
-{{--                                        {{ $cats->name }} <br />--}}
-{{--                                    @endforeach--}}
+                                    {{ $category->parent && $category->parent->name != null ?$category->parent->name:$category->name }}
                                 </td>
                                 <td>{{ date('d-m-Y', strtotime($category->created_at)) }}</td>
                                 <td>

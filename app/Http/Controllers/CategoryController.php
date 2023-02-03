@@ -18,8 +18,7 @@ class CategoryController extends Controller
      */
     public function index()
     {
-
-        $categories = Category::search()->paginate(Params::LIMIT_SHOW);
+        $categories = Category::with('parent')->search()->paginate(Params::LIMIT_SHOW);
 
         return view('cms/category/index', compact('categories'));
     }
@@ -31,8 +30,7 @@ class CategoryController extends Controller
      */
     public function create()
     {
-        $categories = Category::where('status',\App\Constants\Category::ACTIVE_STATUS)->get();
-
+        $categories = Category::where('status', \App\Constants\Category::ACTIVE_STATUS)->get();
         return view('cms/category/create', compact('categories'));
     }
 
@@ -51,8 +49,6 @@ class CategoryController extends Controller
             $categories->fill($data);
             $categories->save();
 
-
-//            $categories->subCats()->attach($request->parent_id);
             DB::commit();
 
             return redirect('categories/index');
@@ -84,10 +80,10 @@ class CategoryController extends Controller
      */
     public function edit($id)
     {
-        $subs = SubCategory::all();
-        $categories = Category::where('status', \App\Constants\Category::ACTIVE_STATUS)->where('id',$id)->get();
 
-        return view('cms/category/edit', compact('categories','subs'));
+        $categories = Category::find($id);
+        $cats = Category::all();
+        return view('cms/category/edit', compact('categories','cats'));
     }
 
     /**
@@ -104,7 +100,6 @@ class CategoryController extends Controller
             $data = $request->all();
             $categories = Category::find($id);
             $categories->fill($data);
-//            $categories->subCats()->sync($request->parent_id);
             $categories->update();
             DB::commit();
 

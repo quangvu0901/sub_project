@@ -15,7 +15,6 @@ class AuthController extends Controller
         Auth::setDefaultDriver('api');
     }
 
-
     public function login(Request $request)
     {
         $request->validate([

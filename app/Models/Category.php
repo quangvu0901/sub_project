@@ -12,7 +12,7 @@ class Category extends Model
 
     public $table = 'categories';
 
-    protected $fillable = ['name', 'status'];
+    protected $fillable = ['name', 'status', 'parent_id'];
 
     public function scopeSearch($query)
     {
@@ -28,20 +28,20 @@ class Category extends Model
         return $this->belongsToMany(Product::class, 'category_product', 'category_id', 'product_id');
     }
 
-//    public function subCats()
-//    {
-//        return $this->belongsToMany(SubCategory::class,'category_subcategory');
-//    }
-
 
     // SELF JOIN
-    // public function parent()
-    // {
-    //     return $this->hasMany(self::class, 'id', 'parent_id');
-    // }
+//     public function parent()
+//     {
+//         return $this->hasMany(self::class, 'id', 'parent_id');
+//     }
 
-    // public function children()
-    // {
-    //     return $this->belongsTo(self::class, 'id', 'parent_id');
-    // }
+//     public function children()
+//     {
+//         return $this->belongsTo(self::class, 'id', 'parent_id');
+//     }
+
+    public function parent()
+    {
+        return $this->belongsTo(Category::class,'parent_id','id');
+    }
 }
