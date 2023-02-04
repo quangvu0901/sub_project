@@ -6,7 +6,7 @@
 
     </header>
 
-    <form id="send-verification" method="post" action="{{ route('verification.send') }}" >
+    <form id="send-verification" method="post" action="{{ route('verification.send') }}">
         @csrf
     </form>
 
@@ -16,19 +16,28 @@
         <div>
             <label>Avatar</label>
             <input type="file" name="avatar" class="mt-1 block w-full border border-primary rounded">
-            <img src="{{ asset('uploads/'.auth()->user()->profile->avatar) }}" style="width: 100px; margin: 10px">
+            @php
+                if (!isset(auth()->user()->profile->avatar)){
+                    echo "Don't have avatar. Please update.";
+                }else{
+                    echo '<img src="uploads/'.auth()->user()->profile->avatar.'" style="width:100px; margin:10px">';
+                }
+            @endphp
         </div>
         <div>
             <label>Phone</label>
-            <input type="text" name="phone" value="{{ auth()->user()->profile->phone ?? ''  }}" class="mt-1 block w-full border border-primary rounded">
+            <input type="text" name="phone" value="{{ auth()->user()->profile->phone ?? ''  }}"
+                   class="mt-1 block w-full border border-primary rounded">
         </div>
         <div>
             <label>Address</label>
-            <input type="text" name="address" value="{{ auth()->user()->profile->address ?? ''  }}" class="mt-1 block w-full border border-primary rounded">
+            <input type="text" name="address" value="{{ auth()->user()->profile->address ?? ''  }}"
+                   class="mt-1 block w-full border border-primary rounded">
         </div>
         <div>
             <label>Birthday</label>
-            <input type="date" name="birthday" value="{{ auth()->user()->profile->birthday ?? ''  }}" class="mt-1 block w-full border border-primary rounded">
+            <input type="date" name="birthday" value="{{ auth()->user()->profile->birthday ?? ''  }}"
+                   class="mt-1 block w-full border border-primary rounded">
         </div>
         <div>
             <label>Gender</label>
