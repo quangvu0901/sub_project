@@ -64,9 +64,9 @@
                 </div>
                 <div class="navbar-nav w-100 hy-500">
                     <a href="{{ route('index') }}" class="nav-item nav-link active"><i class="fa fa-tachometer-alt me-2"></i>{{ __('Dashboard') }}</a>
-                    <a href="{{ route('user.index') }}" class="nav-item nav-link active"><i class="fa fa-user me-2"></i>{{ __('Users') }}</a>
-                    <a href="{{ route('product.index') }}" class="nav-item nav-link"><i class="fa fa-th me-2"></i>{{ __('Products') }}</a>
-                    <a href="{{ route('category.index') }}" class="nav-item nav-link"><i class="fa fa-store me-2"></i>{{ __('Categories') }}</a>
+                    <a href="{{ route('admin.user') }}" class="nav-item nav-link active"><i class="fa fa-user me-2"></i>{{ __('Users') }}</a>
+                    <a href="{{ route('admin.product') }}" class="nav-item nav-link"><i class="fa fa-th me-2"></i>{{ __('Products') }}</a>
+                    <a href="{{ route('admin.category') }}" class="nav-item nav-link"><i class="fa fa-store me-2"></i>{{ __('Categories') }}</a>
                 </div>
             </nav>
         </div>

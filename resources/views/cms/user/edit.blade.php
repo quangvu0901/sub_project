@@ -2,7 +2,7 @@
 
 @section('content')
 
-    <form action="{{ route('user.update',$users->id) }}" method="POST">
+    <form action="{{ route('admin.user.update',$users->id) }}" method="POST">
         @csrf
 
             <div class="py-2 ">

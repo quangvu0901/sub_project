@@ -2,7 +2,7 @@
 
 @section('content')
 
-    <form action="{{ route('product.update',$products->id) }}" method="POST" enctype="multipart/form-data">
+    <form action="{{ route('admin.product.update',$products->id) }}" method="POST" enctype="multipart/form-data">
         @csrf
 
         <div class="py-2 ">

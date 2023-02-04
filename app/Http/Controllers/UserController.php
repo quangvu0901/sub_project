@@ -54,7 +54,7 @@ class UserController extends Controller
             $this->service->createUser($request);
             DB::commit();
 
-            return Redirect('users/index');
+            return Redirect('admin/users');
         }
         catch (\Exception $e){
             DB::rollBack();
@@ -103,12 +103,12 @@ class UserController extends Controller
             $users = User::find($id)->update($data);
             DB::commit();
 
-            return redirect('users/index');
+            return redirect('admin/users');
         }
         catch (\Exception $e){
             DB::rollBack();
 
-            return redirect('users/index')->with('error',$e->getMessage());
+            return redirect('admin/users')->with('error',$e->getMessage());
         }
     }
 

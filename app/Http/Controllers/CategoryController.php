@@ -51,7 +51,7 @@ class CategoryController extends Controller
 
             DB::commit();
 
-            return redirect('categories/index');
+            return redirect('admin/categories');
         } catch (\Exception $e) {
             DB::rollBack();
 
@@ -103,11 +103,11 @@ class CategoryController extends Controller
             $categories->update();
             DB::commit();
 
-            return redirect('categories/index');
+            return redirect('admin/categories');
         } catch (\Exception $e) {
             DB::rollBack();
 
-            return redirect('categories/index');
+            return redirect('admin/categories');
         }
     }
 
@@ -122,6 +122,6 @@ class CategoryController extends Controller
         $data = $request->all();
         $category = Category::find($id)->delete($data);
 
-        return redirect('categories/index');
+        return redirect()->back();
     }
 }

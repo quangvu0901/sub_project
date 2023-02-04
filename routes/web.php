@@ -36,31 +36,33 @@ Route::middleware('auth')->group(function () {
 
 require __DIR__.'/auth.php';
 
-Route::middleware(['auth', 'verified','check_user'])->prefix('users')->group( function () {
-    Route::get('/index', [UserController::class, 'index'])->name('user.index');
-    Route::get('/create', [UserController::class, 'create'])->name('user.create');
-    Route::post('/store', [UserController::class, 'store'])->name('user.store');
-    Route::get('/edit/{id}', [UserController::class, 'edit'])->name('user.edit');
-    Route::post('/update/{id}', [UserController::class, 'update'])->name('user.update');
-    Route::get('/delete/{id}', [UserController::class, 'destroy'])->name('user.delete');
-});
+Route::middleware(['auth','check_user'])->prefix('/admin')->group(function (){
+    Route::prefix('users')->group( function () {
+        Route::get('/', [UserController::class, 'index'])->name('admin.user');
+        Route::get('/create', [UserController::class, 'create'])->name('admin.user.create');
+        Route::post('/store', [UserController::class, 'store'])->name('admin.user.store');
+        Route::get('/edit/{id}', [UserController::class, 'edit'])->name('admin.user.edit');
+        Route::post('/update/{id}', [UserController::class, 'update'])->name('admin.user.update');
+        Route::get('/delete/{id}', [UserController::class, 'destroy'])->name('admin.user.delete');
+    });
 
-Route::middleware(['auth', 'verified','check_user'])->prefix('products')->group(function () {
-    Route::get('/index', [\App\Http\Controllers\ProductController::class, 'index'])->name('product.index');
-    Route::get('/create', [\App\Http\Controllers\ProductController::class, 'create'])->name('product.create');
-    Route::post('/store', [\App\Http\Controllers\ProductController::class, 'store'])->name('product.store');
-    Route::get('/edit/{id}', [\App\Http\Controllers\ProductController::class, 'edit'])->name('product.edit');
-    Route::post('/update/{id}', [\App\Http\Controllers\ProductController::class, 'update'])->name('product.update');
-    Route::get('/delete/{id}', [\App\Http\Controllers\ProductController::class, 'destroy'])->name('product.delete');
-});
+    Route::prefix('products')->group(function () {
+        Route::get('/', [\App\Http\Controllers\ProductController::class, 'index'])->name('admin.product');
+        Route::get('/create', [\App\Http\Controllers\ProductController::class, 'create'])->name('admin.product.create');
+        Route::post('/store', [\App\Http\Controllers\ProductController::class, 'store'])->name('admin.product.store');
+        Route::get('/edit/{id}', [\App\Http\Controllers\ProductController::class, 'edit'])->name('admin.product.edit');
+        Route::post('/update/{id}', [\App\Http\Controllers\ProductController::class, 'update'])->name('admin.product.update');
+        Route::get('/delete/{id}', [\App\Http\Controllers\ProductController::class, 'destroy'])->name('admin.product.delete');
+    });
 
-Route::middleware(['auth', 'verified','check_user'])->prefix('categories')->group(function () {
-    Route::get('/index', [\App\Http\Controllers\CategoryController::class, 'index'])->name('category.index');
-    Route::get('/create', [\App\Http\Controllers\CategoryController::class, 'create'])->name('category.create');
-    Route::post('/store', [\App\Http\Controllers\CategoryController::class, 'store'])->name('category.store');
-    Route::get('/edit/{id}', [\App\Http\Controllers\CategoryController::class, 'edit'])->name('category.edit');
-    Route::post('/update/{id}', [\App\Http\Controllers\CategoryController::class, 'update'])->name('category.update');
-    Route::get('/delete/{id}', [\App\Http\Controllers\CategoryController::class, 'destroy'])->name('category.delete');
+    Route::prefix('categories')->group(function () {
+        Route::get('/', [\App\Http\Controllers\CategoryController::class, 'index'])->name('admin.category');
+        Route::get('/create', [\App\Http\Controllers\CategoryController::class, 'create'])->name('admin.category.create');
+        Route::post('/store', [\App\Http\Controllers\CategoryController::class, 'store'])->name('admin.category.store');
+        Route::get('/edit/{id}', [\App\Http\Controllers\CategoryController::class, 'edit'])->name('admin.category.edit');
+        Route::post('/update/{id}', [\App\Http\Controllers\CategoryController::class, 'update'])->name('admin.category.update');
+        Route::get('/delete/{id}', [\App\Http\Controllers\CategoryController::class, 'destroy'])->name('admin.category.delete');
+    });
 });
 
 

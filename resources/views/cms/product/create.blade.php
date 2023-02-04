@@ -2,7 +2,7 @@
 
 @section('content')
 
-    <form action="{{ route('product.store') }}" method="POST" enctype="multipart/form-data">
+    <form action="{{ route('admin.product.store') }}" method="POST" enctype="multipart/form-data">
         @csrf
         <div class="py-2 ">
             <label class="w-100 h6">{{ __('Name') }}</label>

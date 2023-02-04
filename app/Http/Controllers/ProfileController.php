@@ -45,15 +45,23 @@ class ProfileController extends Controller
     public function profile(Request $request)
     {
         $users = User::findOrFail(Auth::user()->id);
-        $users->profile()->updateOrCreate([
-            'user_id' => $request->user()->id,
-        ],
-            [
-                'phone' => $request->phone,
-                'address' => $request->address,
-                'birthday' => $request->birthday,
-                'gender' => $request->gender,
-            ]);
+        if ($request->has('avatar')) {
+                $file = $request->avatar;
+                $imageName = $file->getClientOriginalName();
+                $link = $file->move(public_path('uploads/'), $imageName);
+                $files = $imageName;
+
+                $users->profile()->updateOrCreate([
+                    'user_id' => $request->user()->id,
+                ],
+                    [
+                        'avatar' => $files,
+                        'phone' => $request->phone,
+                        'address' => $request->address,
+                        'birthday' => $request->birthday,
+                        'gender' => $request->gender,
+                    ]);
+            }
 
         return Redirect::route('profile.edit')->with('status', 'profile-updated');
     }

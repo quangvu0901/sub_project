@@ -6,14 +6,18 @@
 
     </header>
 
-    <form id="send-verification" method="post" action="{{ route('verification.send') }}">
+    <form id="send-verification" method="post" action="{{ route('verification.send') }}" >
         @csrf
     </form>
 
-    <form method="post" action="{{ route('profile.profile') }}" class="mt-6 space-y-6">
+    <form method="post" action="{{ route('profile.profile') }}" class="mt-6 space-y-6" enctype="multipart/form-data">
         @csrf
 
-
+        <div>
+            <label>Avatar</label>
+            <input type="file" name="avatar" class="mt-1 block w-full border border-primary rounded">
+            <img src="{{ asset('uploads/'.auth()->user()->profile->avatar) }}" style="width: 100px; margin: 10px">
+        </div>
         <div>
             <label>Phone</label>
             <input type="text" name="phone" value="{{ auth()->user()->profile->phone ?? ''  }}" class="mt-1 block w-full border border-primary rounded">

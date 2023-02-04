@@ -4,7 +4,7 @@
     <div class="bg-light text-center rounded p-4">
         <div class="d-flex align-items-center justify-content-between mb-4">
             <h6 class="mb-0">{{ __('List products') }}</h6>
-            <a class="btn btn-sm btn-primary" href="{{ route('product.create') }}"><i class="fa fa-plus"></i> {{ __('Add') }}</a>
+            <a class="btn btn-sm btn-primary" href="{{ route('admin.product.create') }}"><i class="fa fa-plus"></i> {{ __('Add') }}</a>
         </div>
 
         <div class="table-responsive">
@@ -39,8 +39,8 @@
 
                             <td>{{ date('d-m-Y',strtotime($product->created_at)) }}</td>
                             <td>
-                                <a class="btn btn-sm btn-success" href="{{ route('product.edit',$product->id) }}"><i class="fa fa-pen"></i> {{--Edit--}}</a>
-                                <a class="btn btn-sm btn-danger" href="{{ route('product.delete',$product->id) }}" onclick="return confirm('Are you sure?')"><i class="fa fa-trash"></i> {{--Delete--}}</a>
+                                <a class="btn btn-sm btn-success" href="{{ route('admin.product.edit',$product->id) }}"><i class="fa fa-pen"></i> {{--Edit--}}</a>
+                                <a class="btn btn-sm btn-danger" href="{{ route('admin.product.delete',$product->id) }}" onclick="return confirm('Are you sure?')"><i class="fa fa-trash"></i> {{--Delete--}}</a>
                             </td>
                         </tr>
                     @endforeach

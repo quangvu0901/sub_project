@@ -58,7 +58,7 @@ class ProductController extends Controller
             $this->service->createProduct($request);
             DB::commit();
 
-            return redirect('products/index');
+            return redirect('admin/products');
         } catch (\Exception $e) {
             DB::rollBack();
             echo $e->getMessage();
@@ -105,11 +105,11 @@ class ProductController extends Controller
             $this->service->updateProduct($request, $id);
             DB::commit();
 
-            return redirect('products/index');
+            return redirect('admin/products');
         } catch (\Exception $e) {
             DB::rollBack();
 
-            return redirect('products/index')->with('error', $e->getMessage());
+            return redirect('admin/products')->with('error', $e->getMessage());
         }
     }
 
@@ -124,7 +124,7 @@ class ProductController extends Controller
         $data = $request->all();
         Product::find($id)->delete($data);
 
-        return redirect('products/index')->with('flash_message', 'Product deleted successfully!');
+        return redirect()->back();
     }
 
 

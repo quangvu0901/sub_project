@@ -29,16 +29,23 @@ class ProfileController extends Controller
     public function update(Request $request)
     {
         $user = User::findOrFail(Auth::user()->id);
+        if ($request->has('avatar')) {
+            $file = $request->avatar;
+            $imageName = $file->getClientOriginalName();
+            $link = $file->move(public_path('uploads/'), $imageName);
+            $files = $imageName;
 
-        $user->profile()->updateOrCreate(
-            ['user_id' => $request->user()->id],
-            [
-                'phone' => $request->phone,
-                'address' => $request->address,
-                'birthday' => $request->birthday,
-                'gender' => $request->gender,
-            ]
-        );
+            $user->profile()->updateOrCreate(
+                ['user_id' => $request->user()->id],
+                [
+                    'avatar' => $files,
+                    'phone' => $request->phone,
+                    'address' => $request->address,
+                    'birthday' => $request->birthday,
+                    'gender' => $request->gender,
+                ]
+            );
+        }
         $profile = User::find(Auth::user()->id)->profile;
         $user['profile'] = $profile;
         return response()->json([

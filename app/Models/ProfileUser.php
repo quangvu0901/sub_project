@@ -11,5 +11,5 @@ class ProfileUser extends Model
 
     public $table = 'profile_users';
 
-    protected $fillable = ['id', 'phone', 'address', 'birthday', 'gender'];
+    protected $fillable = ['id', 'avatar','phone', 'address', 'birthday', 'gender'];
 }

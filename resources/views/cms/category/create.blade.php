@@ -1,7 +1,7 @@
 @extends('index')
 
 @section('content')
-    <form action="{{ route('category.store') }}" method="POST">
+    <form action="{{ route('admin.category.store') }}" method="POST">
         @csrf
         <div class="py-2 ">
             <label class="w-100 h6">{{ __('Name') }}</label>

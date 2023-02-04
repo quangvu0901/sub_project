@@ -4,7 +4,7 @@
 <div class="bg-light text-center rounded p-4">
     <div class="d-flex align-items-center justify-content-between mb-4">
         <h3 class="mb-0">{{ __('List users') }} {{--<a class="h6">({{ count($users) }})</a>--}} </h3>
-        <a class="btn btn-sm btn-primary" href="{{ route('user.create') }}"><i class="fa fa-plus"></i> {{ __('Add') }}</a>
+        <a class="btn btn-sm btn-primary" href="{{ route('admin.user.create') }}"><i class="fa fa-plus"></i> {{ __('Add') }}</a>
     </div>
     <div class="table-responsive">
         <table class="table text-center align-middle table-bordered table-hover mb-0">
@@ -55,8 +55,8 @@
                     </td>
                     <td>{{ date('d-m-Y',strtotime($user->created_at)) }}</td>
                     <td>
-                        <a class="btn btn-sm btn-success" href="{{ route('user.edit',$user->id) }}"><i class="fa fa-pen"></i> </a>
-                        <a class="btn btn-sm btn-danger" href="{{ route('user.delete',$user->id) }}" onclick="return confirm('Are you sure?')"><i class="fa fa-trash"></i> </a>
+                        <a class="btn btn-sm btn-success" href="{{ route('admin.user.edit',$user->id) }}"><i class="fa fa-pen"></i> </a>
+                        <a class="btn btn-sm btn-danger" href="{{ route('admin.user.delete',$user->id) }}" onclick="return confirm('Are you sure?')"><i class="fa fa-trash"></i> </a>
                     </td>
                 </tr>
                 @endforeach

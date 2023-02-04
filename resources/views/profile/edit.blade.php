@@ -1,7 +1,7 @@
 <x-app-layout>
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-            <a href="{{ route('user.index') }}">Home</a>
+            <a href="{{ route('admin.user') }}">Home</a>
         </h2>
     </x-slot>
 
