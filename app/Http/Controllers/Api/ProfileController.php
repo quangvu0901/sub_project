@@ -10,10 +10,6 @@ use Illuminate\Support\Facades\Auth;
 
 class ProfileController extends Controller
 {
-    public  function  __construct()
-    {
-        Auth::setDefaultDriver('api');
-    }
 
     public function getUser()
     {
