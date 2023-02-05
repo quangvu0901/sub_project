@@ -28,15 +28,14 @@ class ProfileController extends Controller
 
     public function update(Request $request)
     {
+        dd(Auth::user()->id);
         $user = User::findOrFail(Auth::user()->id);
-//        dd($request->hasFile('avatar'));
+
         if ($request->hasFile('avatar')) {
-//            dd(1);
             $file = $request->file('avatar');
             $imageName = $file->getClientOriginalName();
             $link = $file->move(public_path('uploads/'), $imageName);
             $files = $imageName;
-//            dd($request->all());
             $user->profile()->updateOrCreate(
                 ['user_id' => $request->user()->id],
                 [
