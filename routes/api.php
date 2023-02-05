@@ -41,7 +41,7 @@ Route::middleware('api')->prefix('/categories')->group(function(){
     Route::get('getCategories',[CategoryController::class,'getCategories']);
 });
 
-Route::middleware('api')->prefix('/profile')->group(function (){
+Route::prefix('/profile')->group(function (){
     Route::get('getUser',[\App\Http\Controllers\Api\ProfileController::class,'getUser']);
     Route::post('updateUser',[\App\Http\Controllers\Api\ProfileController::class,'update']);
 });
