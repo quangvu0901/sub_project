@@ -29,12 +29,14 @@ class ProfileController extends Controller
     public function update(Request $request)
     {
         $user = User::findOrFail(Auth::user()->id);
-        if ($request->has('avatar')) {
-            $file = $request->avatar;
+//        dd($request->hasFile('avatar'));
+        if ($request->hasFile('avatar')) {
+//            dd(1);
+            $file = $request->file('avatar');
             $imageName = $file->getClientOriginalName();
             $link = $file->move(public_path('uploads/'), $imageName);
             $files = $imageName;
-
+//            dd($request->all());
             $user->profile()->updateOrCreate(
                 ['user_id' => $request->user()->id],
                 [
@@ -52,7 +54,6 @@ class ProfileController extends Controller
             'status' => 'success',
             'message' => 'Successfully edit profile',
             'user' => $user,
-            //    'profile' =>$profile
         ]);
     }
 

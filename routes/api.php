@@ -24,7 +24,7 @@ Route::middleware(['api','auth','verified','check_user'])->prefix('/')->group(fu
 
 });
 
-Route::middleware('api')->prefix('/users')->group(function (){
+Route::middleware('api')->prefix('/')->group(function (){
     Route::post('/login',[\App\Http\Controllers\AuthController::class,'login']);
     Route::get('/logout',[\App\Http\Controllers\AuthController::class,'logout']);
     Route::post('/register',[\App\Http\Controllers\AuthController::class,'register']);
@@ -43,5 +43,5 @@ Route::middleware('api')->prefix('/categories')->group(function(){
 
 Route::middleware('api')->prefix('/profile')->group(function (){
     Route::get('getUser',[\App\Http\Controllers\Api\ProfileController::class,'getUser']);
-    Route::put('updateUser',[\App\Http\Controllers\Api\ProfileController::class,'update']);
+    Route::post('updateUser',[\App\Http\Controllers\Api\ProfileController::class,'update']);
 });
