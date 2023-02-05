@@ -10,6 +10,10 @@ use Illuminate\Support\Facades\Auth;
 
 class ProfileController extends Controller
 {
+    public  function  __construct()
+    {
+        Auth::setDefaultDriver('api');
+    }
 
     public function getUser()
     {
@@ -24,7 +28,7 @@ class ProfileController extends Controller
 
     public function update(Request $request)
     {
-        dd(Auth::user()->id);
+
         $user = User::findOrFail(Auth::user()->id);
 
         if ($request->hasFile('avatar')) {
