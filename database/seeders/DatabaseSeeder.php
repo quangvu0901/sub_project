@@ -18,12 +18,14 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        DB::table('users')->insert([
-            'name' => 'Admin',
-            'email' => 'admin@gmail.com',
-            'password' => Hash::make('password'),
-            'role' => '1',
-            'created_at' => Carbon::now(),
-        ]);
+        DB::table('users')->insert(
+            [
+                'name' => 'Admin',
+                'email' => 'admin@gmail.com',
+                'password' => Hash::make('password'),
+                'role' => '1',
+                'created_at' => Carbon::now(),
+            ],
+        );
     }
 }

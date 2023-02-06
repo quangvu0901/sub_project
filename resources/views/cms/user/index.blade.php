@@ -41,7 +41,7 @@
                                 elseif(optional($user->profile)->gender == \App\Constants\User::FEMALE)
                                     echo "Female";
                                 else
-                                    echo "Unknown";
+                                    echo "";
                             @endphp
                         </td>
                     <td>
@@ -55,7 +55,7 @@
                     </td>
                     <td>{{ date('d-m-Y',strtotime($user->created_at)) }}</td>
                     <td>
-                        <a class="btn btn-sm btn-success" href="{{ route('admin.user.edit',$user->id) }}"><i class="fa fa-pen"></i> </a>
+{{--                        <a class="btn btn-sm btn-success" href="{{ route('admin.user.edit',$user->id) }}"><i class="fa fa-pen"></i> </a>--}}
                         <a class="btn btn-sm btn-danger" href="{{ route('admin.user.delete',$user->id) }}" onclick="return confirm('Are you sure?')"><i class="fa fa-trash"></i> </a>
                     </td>
                 </tr>

@@ -34,7 +34,7 @@ Route::middleware('api')->prefix('/')->group(function (){
 Route::middleware('api')->prefix('/products')->group(function(){
     Route::get('getOne',[ProductController::class,'getProductWithOneImg']);
     Route::get('getAll',[ProductController::class,'getProductWithAllImg']);
-    Route::get('search',[ProductController::class,'search']);
+    Route::get('/',[ProductController::class,'search']);
 });
 
 Route::middleware('api')->prefix('/categories')->group(function(){

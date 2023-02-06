@@ -67,6 +67,7 @@
                     <a href="{{ route('admin.user') }}" class="nav-item nav-link active"><i class="fa fa-user me-2"></i>{{ __('Users') }}</a>
                     <a href="{{ route('admin.product') }}" class="nav-item nav-link"><i class="fa fa-th me-2"></i>{{ __('Products') }}</a>
                     <a href="{{ route('admin.category') }}" class="nav-item nav-link"><i class="fa fa-store me-2"></i>{{ __('Categories') }}</a>
+                    <a href="{{ route('admin.order') }}" class="nav-item nav-link"><i class="fa fa-clipboard"></i>{{ __('Order') }}</a>
                 </div>
             </nav>
         </div>

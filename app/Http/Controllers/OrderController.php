@@ -3,22 +3,13 @@
 namespace App\Http\Controllers;
 
 use App\Constants\Params;
-use App\Http\Controllers\Controller;
-use App\Http\Requests\ProductRequest;
-use App\Models\Category;
+use App\Models\Order;
 use App\Models\Product;
-use App\Services\ProductService;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
-
-class ProductController extends Controller
+class OrderController extends Controller
 {
-    protected $service;
-    public function __construct(ProductService $service)
-    {
-        $this->service = $service;
-    }
 
     /**
      * Display a listing of the resource.
@@ -27,10 +18,9 @@ class ProductController extends Controller
      */
     public function index()
     {
-        $categories = Category::all();
-        $products = Product::search()->paginate(Params::LIMIT_SHOW);
+        $orders = Order::search()->paginate(Params::LIMIT_SHOW);
 
-        return view('cms/product/index', compact('products', 'categories'));
+        return view('cms/order/index', compact('orders'));
     }
 
     /**
@@ -40,9 +30,8 @@ class ProductController extends Controller
      */
     public function create()
     {
-        $categories = Category::all();
-
-        return view('cms/product/create', compact('categories'));
+        $products = Product::first();
+        return view('cms/order/create', compact('products'));
     }
 
     /**
@@ -51,19 +40,19 @@ class ProductController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(ProductRequest $request)
+    public function store(Request $request)
     {
         DB::beginTransaction();
         try {
-            $this->service->createProduct($request);
+            
             DB::commit();
 
             return redirect('admin/products');
         } catch (\Exception $e) {
             DB::rollBack();
-            echo $e->getMessage();
-        }
 
+            return $e->getMessage();
+        }
     }
 
     /**
@@ -74,9 +63,7 @@ class ProductController extends Controller
      */
     public function show($id)
     {
-        $products = Product::with('images')->find($id);
-
-        return view('cms/product/product_detail', compact('products'));
+        //
     }
 
     /**
@@ -87,10 +74,7 @@ class ProductController extends Controller
      */
     public function edit($id)
     {
-        $products = Product::with('images')->find($id);
-        $categories = Category::all();
-
-        return view('cms/product/edit', compact('products', 'categories'));
+        //
     }
 
     /**
@@ -100,19 +84,9 @@ class ProductController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(ProductRequest $request, $id)
+    public function update(Request $request, $id)
     {
-        DB::beginTransaction();
-        try {
-            $this->service->updateProduct($request, $id);
-            DB::commit();
-
-            return redirect('admin/products');
-        } catch (\Exception $e) {
-            DB::rollBack();
-
-            return redirect('admin/products')->with('error', $e->getMessage());
-        }
+        //
     }
 
     /**
@@ -124,10 +98,8 @@ class ProductController extends Controller
     public function destroy(Request $request, $id)
     {
         $data = $request->all();
-        Product::find($id)->delete($data);
+        $order = Order::find($id)->delete($data);
 
-        return redirect()->back();
+        return Redirect()->back();
     }
-
-
 }

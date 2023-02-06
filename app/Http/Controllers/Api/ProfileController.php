@@ -28,7 +28,6 @@ class ProfileController extends Controller
 
     public function update(Request $request)
     {
-
         $user = User::findOrFail(Auth::user()->id);
 
         if ($request->hasFile('avatar')) {

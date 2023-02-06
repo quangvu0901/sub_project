@@ -18,7 +18,7 @@
                     <th scope="col">{{ __('Description') }}</th>
                     <th scope="col">{{ __('Category') }}</th>
                     <th scope="col">{{ __('Date') }}</th>
-                    <th scope="col">{{ __('Action') }}</th>
+                    <th scope="col" style="width: 120px">{{ __('Action') }}</th>
                 </tr>
                 </thead>
                 <tbody>
@@ -38,9 +38,10 @@
                             </td>
 
                             <td>{{ date('d-m-Y',strtotime($product->created_at)) }}</td>
-                            <td>
+                            <td style="width: 120px">
                                 <a class="btn btn-sm btn-success" href="{{ route('admin.product.edit',$product->id) }}"><i class="fa fa-pen"></i> {{--Edit--}}</a>
                                 <a class="btn btn-sm btn-danger" href="{{ route('admin.product.delete',$product->id) }}" onclick="return confirm('Are you sure?')"><i class="fa fa-trash"></i> {{--Delete--}}</a>
+                                <a class="btn btn-sm btn-danger" href="{{ route('admin.product.show',$product->id) }}" ><i class="fa fa-cart-plus"></i> </a>
                             </td>
                         </tr>
                     @endforeach
