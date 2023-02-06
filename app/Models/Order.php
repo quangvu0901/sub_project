@@ -25,7 +25,7 @@ class Order extends Model
     public function scopeSearch($query)
     {
         if ($keyword = request()->keyword) {
-            $query = $query->where('name', 'like', '%' . $keyword . '%');
+            $query = $query->where('user_id', 'like', '%' . $keyword . '%');
         }
 
         return $query;

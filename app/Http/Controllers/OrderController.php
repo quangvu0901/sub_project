@@ -18,7 +18,7 @@ class OrderController extends Controller
      */
     public function index()
     {
-        $orders = Order::search()->paginate(Params::LIMIT_SHOW);
+        $orders = Order::paginate(Params::LIMIT_SHOW);
 
         return view('cms/order/index', compact('orders'));
     }
