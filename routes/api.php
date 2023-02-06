@@ -45,3 +45,7 @@ Route::middleware('api')->prefix('/profile')->group(function (){
     Route::get('getUser',[\App\Http\Controllers\Api\ProfileController::class,'getUser']);
     Route::post('updateUser',[\App\Http\Controllers\Api\ProfileController::class,'update']);
 });
+
+Route::middleware('api')->prefix('order')->group(function () {
+    Route::post('/',[\App\Http\Controllers\Api\OrderController::class,'orderProduct']);
+});

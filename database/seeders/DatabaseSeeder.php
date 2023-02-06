@@ -27,5 +27,24 @@ class DatabaseSeeder extends Seeder
                 'created_at' => Carbon::now(),
             ],
         );
+        DB::table('categories')->insert(
+            [
+                'name' => 'Men',
+                'parent_id' => '0',
+                'status' => '1',
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now(),
+            ],
+        );
+        DB::table('products')->insert(
+            [
+                'name' => 'Black suit',
+                'price' => '1500000',
+                'quantity' => '12',
+                'description' => 'Just when you thought iMac had everything.',
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now(),
+            ],
+        );
     }
 }
