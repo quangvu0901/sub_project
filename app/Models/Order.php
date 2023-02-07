@@ -21,6 +21,11 @@ class Order extends Model
         return $this->hasOne(User::class,'id','user_id');
     }
 
+    public function oderDetail()
+    {
+        return $this->hasMany(OrderDetail::class, 'order_id', 'id'); 
+    }
+
     public function scopeSearch($query)
     {
         if ($keyword = request()->keyword) {

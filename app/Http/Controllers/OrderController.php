@@ -30,8 +30,7 @@ class OrderController extends Controller
      */
     public function create()
     {
-        $products = Product::first();
-        return view('cms/order/create', compact('products'));
+    
     }
 
     /**
@@ -42,17 +41,7 @@ class OrderController extends Controller
      */
     public function store(Request $request)
     {
-        DB::beginTransaction();
-        try {
-
-            DB::commit();
-
-            return redirect('admin/products');
-        } catch (\Exception $e) {
-            DB::rollBack();
-
-            return $e->getMessage();
-        }
+        
     }
 
     /**
@@ -63,7 +52,7 @@ class OrderController extends Controller
      */
     public function show($id)
     {
-        //
+        
     }
 
     /**

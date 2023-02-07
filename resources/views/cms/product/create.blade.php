@@ -26,6 +26,10 @@
             @enderror
         </div>
         <div class="py-2 ">
+            <label class="w-100 h6">{{ __('Discount') }}</label>
+            <input type="number" name="discount" placeholder="Enter quantity" class="w-100 py-2 rounded border-1">
+        </div>
+        <div class="py-2 ">
             <label class="w-100 h6">{{ __('Description') }}</label>
             <textarea name="description" placeholder="Enter description" class="w-100 py-2 rounded border-1"
                       rows="10"></textarea>

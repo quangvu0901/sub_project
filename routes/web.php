@@ -53,7 +53,7 @@ Route::middleware(['auth','check_user'])->prefix('/admin')->group(function (){
         Route::get('/edit/{id}', [\App\Http\Controllers\ProductController::class, 'edit'])->name('admin.product.edit');
         Route::post('/update/{id}', [\App\Http\Controllers\ProductController::class, 'update'])->name('admin.product.update');
         Route::get('/delete/{id}', [\App\Http\Controllers\ProductController::class, 'destroy'])->name('admin.product.delete');
-        Route::get('/show/{id}', [\App\Http\Controllers\ProductController::class, 'show'])->name('admin.product.show');
+        Route::get('/{id}', [\App\Http\Controllers\ProductController::class, 'show'])->name('admin.product.show');
     });
 
     Route::prefix('categories')->group(function () {
@@ -67,11 +67,7 @@ Route::middleware(['auth','check_user'])->prefix('/admin')->group(function (){
 
     Route::prefix('orders')->group(function (){
        Route::get('/',[\App\Http\Controllers\OrderController::class,'index'])->name('admin.order');
-       Route::get('/create',[\App\Http\Controllers\OrderController::class,'create'])->name('admin.order.create');
-       Route::post('/store',[\App\Http\Controllers\OrderController::class,'store'])->name('admin.order.store');
-       Route::get('/edit/{id}',[\App\Http\Controllers\OrderController::class,'edit'])->name('admin.order.edit');
-       Route::get('/update/{id}',[\App\Http\Controllers\OrderController::class,'update'])->name('admin.order.update');
-       Route::get('/delete/{id}',[\App\Http\Controllers\OrderController::class,'destroy'])->name('admin.order.delete');
+       Route::get('/{id}',[\App\Http\Controllers\OrderController::class,'create'])->name('admin.order.show');
     });
 });
 

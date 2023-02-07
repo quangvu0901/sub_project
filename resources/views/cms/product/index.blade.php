@@ -15,6 +15,7 @@
                     <th scope="col">{{ __('Name') }}</th>
                     <th scope="col">{{ __('Price') }}</th>
                     <th scope="col">{{ __('Quantity') }}</th>
+                    <th scope="col">{{ __('Discount') }}</th>
                     <th scope="col">{{ __('Description') }}</th>
                     <th scope="col">{{ __('Category') }}</th>
                     <th scope="col">{{ __('Date') }}</th>
@@ -30,6 +31,7 @@
                             <td><a href="{{ route('admin.product.show',$product->id) }}" class="h6">{{ $product->name }}</a></td>
                             <td>{{ $product->price }}</td>
                             <td>{{ $product->quantity }}</td>
+                            <td>{{ $product->discount }}</td>
                             <td>{{ $product->description }}</td>
                             <td class="align-left">
                                 @foreach($product->categories as $cat)

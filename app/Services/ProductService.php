@@ -13,6 +13,7 @@ class ProductService
             'name' => $data['name'],
             'price'=> $data['price'],
             'quantity' => $data['quantity'],
+            'discount' => $data['discount'],
             'description' => $data['description'],
         ];
         $products = new Product();
@@ -42,6 +43,7 @@ class ProductService
             'name' => $data['name'],
             'price'=> $data['price'],
             'quantity' => $data['quantity'],
+            'discount' => $data['discount'],
             'description' => $data['description'],
         ];
         $product = Product::find($id);

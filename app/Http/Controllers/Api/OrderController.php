@@ -13,38 +13,47 @@ class OrderController extends Controller
 {
     public function __construct()
     {
-//        $this->middleware('auth:api', ['except' => ['login','register']]);
+        //        $this->middleware('auth:api', ['except' => ['login','register']]);
         Auth::setDefaultDriver('api');
     }
-    public function orderProduct(Request $request){
-        $user_id = auth()->user()->id;
-        $total_price = $request['total_price'];
-        $order = new Order();
-        $order['user_id'] = $user_id;
-        $order['total_price'] = $total_price;
-        $order['status'] = 1;
-        $order->save();
+    public function orderProduct(Request $request)
+    {
+        DB::beginTransaction();
+        try {
+            $user_id = auth()->user()->id;
+            $total_price = $request['total_price'];
+            $order = new Order();
+            $order['user_id'] = $user_id;
+            $order['total_price'] = $total_price;
+            $order['status'] = 1;
+            $order->save();
 
-        $object = $request->obj;
-        $product_id = array_values(array_unique(array_column($object,'product_id')));
-        $products = Product::whereIn('id', $product_id)->select('id','price','name')->get();
-        foreach($object as $obj){
-            foreach($products as $product){
-                if($obj['product_id'] == $product->id){
-                    echo 1111;
-                    $a[] = [
-                        'order_id' => $order->id,
-                        'product_id' => $obj['product_id'],
-                        'quantity' => $obj['quantity'],
-                        'product_name' => $product->name,
-                        'product_price' => $product->price
-                    ];
-                }
+            $object = $request->obj;
+
+            foreach ($object as $obj) {
+                $products = Product::find($obj['product_id']);
+                $quantity = $products->quantity - $obj['quantity'];
+                DB::table('order_details')->insert([
+                    'order_id' => $order->id,
+                    'product_id' => $obj['product_id'],
+                    'quantity' => $obj['quantity'],
+                    'product_name' => $products->name,
+                    'product_price' => $products->price
+                ]);
+                $products->update([
+                    'quantity' => $quantity,
+                ]);
             }
-        }
-        DB::table('order_details')->insert($a);
+            DB::commit();
+        } catch (\Exception $e) {
+            DB::rollBack();
 
-        
+            return redirect()->back()->response()->json([
+                'status' => 'Error',
+                'message' => 'False payment',
+            ]);;
+        }
+
         return response()->json([
             'status' => 'success',
             'message' => 'Successfully payment',
