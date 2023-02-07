@@ -43,7 +43,7 @@ class ProductController extends Controller
     {
         $products = Product::with('images')->find($id);
 
-        return view('cms/product/product_detail', compact('products'));
+        return  Response()->json($products);
     }
 
 }
