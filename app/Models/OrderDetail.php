@@ -6,6 +6,7 @@ use Illuminate\Auth\Events\Failed;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
+
 class OrderDetail extends Model
 {
     use HasFactory;
@@ -17,6 +18,7 @@ class OrderDetail extends Model
         'quantity',
         'product_price'
     ];
+
 
     
 }

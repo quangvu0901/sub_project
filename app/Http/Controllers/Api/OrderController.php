@@ -26,17 +26,25 @@ class OrderController extends Controller
         $order->save();
 
         $object = $request->obj;
+        $product_id = array_values(array_unique(array_column($object,'product_id')));
+        $products = Product::whereIn('id', $product_id)->select('id','price','name')->get();
         foreach($object as $obj){
-            $products = Product::find($obj['product_id']);
-            DB::table('order_details')->insert([
-                'order_id' => $order->id,
-                'product_id' => $obj['product_id'],
-                'quantity' => $obj['quantity'],
-                'product_name' => $products->name,
-                'product_price' => $products->price 
-            ]);
+            foreach($products as $product){
+                if($obj['product_id'] == $product->id){
+                    echo 1111;
+                    $a[] = [
+                        'order_id' => $order->id,
+                        'product_id' => $obj['product_id'],
+                        'quantity' => $obj['quantity'],
+                        'product_name' => $product->name,
+                        'product_price' => $product->price
+                    ];
+                }
+            }
         }
+        DB::table('order_details')->insert($a);
 
+        
         return response()->json([
             'status' => 'success',
             'message' => 'Successfully payment',

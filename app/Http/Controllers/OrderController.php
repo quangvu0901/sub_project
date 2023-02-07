@@ -18,8 +18,8 @@ class OrderController extends Controller
      */
     public function index()
     {
-        $orders = Order::paginate(Params::LIMIT_SHOW);
-
+        $orders = Order::with('user')->paginate(Params::LIMIT_SHOW);
+        
         return view('cms/order/index', compact('orders'));
     }
 
@@ -44,7 +44,7 @@ class OrderController extends Controller
     {
         DB::beginTransaction();
         try {
-            
+
             DB::commit();
 
             return redirect('admin/products');

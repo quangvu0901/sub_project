@@ -13,8 +13,6 @@
                     <tr class="text-dark">
                         <th scope="col">{{ __('#') }}</th>
                         <th scope="col">{{ __('User') }}</th>
-                        <th scope="col">{{ __('Product') }}</th>
-                        <th scope="col">{{ __('Quantity') }}</th>
                         <th scope="col">{{ __('Total price') }}</th>
                         <th scope="col">{{ __('Status') }}</th>
                         <th scope="col">{{ __('Date') }}</th>
@@ -26,9 +24,7 @@
                         @foreach ($orders as $order)
                             <tr>
                                 <td>{{ $order->id }}</td>
-                                <td>{{ $order->user_id }}</td>
-                                <td>{{ $order->product_id }}</td>
-                                <td>{{ $order->quantity }}</td>
+                                <td>{{ $order->user->name }}</td>
                                 <td>{{ $order->total_price }}</td>
                                 <td>{{ $order->status }}</td>
                                 <td>{{ date('d-m-Y', strtotime($order->created_at)) }}</td>

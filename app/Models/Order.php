@@ -16,10 +16,9 @@ class Order extends Model
         'status'
     ];
 
- 
-    public function orderDetailWithOrder()
+    public function user()
     {
-        return $this->hasMany(OrderDetail::class);
+        return $this->hasOne(User::class,'id','user_id');
     }
 
     public function scopeSearch($query)
