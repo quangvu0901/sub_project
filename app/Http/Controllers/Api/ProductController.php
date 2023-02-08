@@ -33,7 +33,7 @@ class ProductController extends Controller
     function search(Request $request)
     {
         $param = $request->input('keyword');
-        $result = Product::with('image')->filter()->paginate(Params::LIMIT_SHOW);
+        $result = Product::with('image')->filter()->paginate($request->limit);
         
         if (count($result)) {
             return Response()->json($result);
