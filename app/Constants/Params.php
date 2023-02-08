@@ -6,5 +6,5 @@ namespace App\Constants;
 
 class Params
 {
-    CONST LIMIT_SHOW = 5;
+    CONST LIMIT_SHOW = 12;
 }

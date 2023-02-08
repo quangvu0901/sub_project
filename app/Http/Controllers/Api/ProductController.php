@@ -6,6 +6,7 @@ use App\Constants\Params;
 use App\Http\Controllers\Controller;
 use App\Models\Category;
 use App\Models\Product;
+use GuzzleHttp\Psr7\Response;
 use Illuminate\Http\Request;
 
 class ProductController extends Controller
@@ -19,8 +20,9 @@ class ProductController extends Controller
         ]);
     }
 
-    public function getProductWithAllImg()
+    public function getProductWithAllImg(Request $request)
     {
+        $param = $request->input('keyword');
         $products = Product::with('images')->paginate(Params::LIMIT_SHOW);
 
         return response()->json([
@@ -31,7 +33,8 @@ class ProductController extends Controller
     function search(Request $request)
     {
         $param = $request->input('keyword');
-        $result = Product::with('image')->where('name', 'LIKE', '%' . $param . '%')->paginate(Params::LIMIT_SHOW);
+        $result = Product::with('image')->filter()->paginate(Params::LIMIT_SHOW);
+        
         if (count($result)) {
             return Response()->json($result);
         } else {
@@ -45,5 +48,4 @@ class ProductController extends Controller
 
         return  Response()->json($products);
     }
-
 }
