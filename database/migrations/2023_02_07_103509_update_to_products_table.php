@@ -15,6 +15,7 @@ return new class extends Migration
     {
         Schema::table('products', function (Blueprint $table) {
             $table->double('discount')->nullable();
+            $table->double('rating')->nullable();
         });
     }
 

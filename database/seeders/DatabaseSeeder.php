@@ -27,104 +27,102 @@ class DatabaseSeeder extends Seeder
                 'created_at' => Carbon::now(),
             ],
         );
-        DB::table('categories')->insert(
+        $category = [
             [
-                [
-                    'name' => 'Men',
-                    'parent_id' => '0',
-                    'status' => '1',
-                    'created_at' => Carbon::now(),
-                    'updated_at' => Carbon::now(),
-                ],
-                [
-                    'name' => 'Women',
-                    'parent_id' => '0',
-                    'status' => '1',
-                    'created_at' => Carbon::now(),
-                    'updated_at' => Carbon::now(),
-                ],
-                [
-                    'name' => 'Office Wear',
-                    'parent_id' => '0',
-                    'status' => '1',
-                    'created_at' => Carbon::now(),
-                    'updated_at' => Carbon::now(),
-                ],
-                [
-                    'name' => 'Hoodies',
-                    'parent_id' => '1',
-                    'status' => '1',
-                    'created_at' => Carbon::now(),
-                    'updated_at' => Carbon::now(),
-                ],
-                [
-                    'name' => 'Dress',
-                    'parent_id' => '2',
-                    'status' => '1',
-                    'created_at' => Carbon::now(),
-                    'updated_at' => Carbon::now(),
-                ],
-            ]
-        );
-        DB::table('products')->insert(
+                'name' => 'Men',
+                'parent_id' => '0',
+                'status' => '1',
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now(),
+            ],
             [
-                [
-                    'name' => 'Black suit',
-                    'price' => '1500000',
-                    'quantity' => '12',
-                    'description' => 'Just when you thought iMac had everything.',
-                    'created_at' => Carbon::now(),
-                    'updated_at' => Carbon::now(),
-                ],
-                [
-                    'name' => 'Black suit',
-                    'price' => '1500000',
-                    'quantity' => '12',
-                    'description' => 'Just when you thought iMac had everything.',
-                    'created_at' => Carbon::now(),
-                    'updated_at' => Carbon::now(),
-                ],
-                [
-                    'name' => 'Black suit',
-                    'price' => '1500000',
-                    'quantity' => '12',
-                    'description' => 'Just when you thought iMac had everything.',
-                    'created_at' => Carbon::now(),
-                    'updated_at' => Carbon::now(),
-                ],
-                [
-                    'name' => 'Black suit',
-                    'price' => '1500000',
-                    'quantity' => '12',
-                    'description' => 'Just when you thought iMac had everything.',
-                    'created_at' => Carbon::now(),
-                    'updated_at' => Carbon::now(),
-                ],
-                [
-                    'name' => 'Black suit',
-                    'price' => '1500000',
-                    'quantity' => '12',
-                    'description' => 'Just when you thought iMac had everything.',
-                    'created_at' => Carbon::now(),
-                    'updated_at' => Carbon::now(),
-                ],
-                [
-                    'name' => 'Black suit',
-                    'price' => '1500000',
-                    'quantity' => '12',
-                    'description' => 'Just when you thought iMac had everything.',
-                    'created_at' => Carbon::now(),
-                    'updated_at' => Carbon::now(),
-                ],
-                [
-                    'name' => 'Black suit',
-                    'price' => '1500000',
-                    'quantity' => '12',
-                    'description' => 'Just when you thought iMac had everything.',
-                    'created_at' => Carbon::now(),
-                    'updated_at' => Carbon::now(),
-                ]
+                'name' => 'Women',
+                'parent_id' => '0',
+                'status' => '1',
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now(),
+            ],
+            [
+                'name' => 'Office Wear',
+                'parent_id' => '0',
+                'status' => '1',
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now(),
+            ],
+            [
+                'name' => 'Hoodies',
+                'parent_id' => '1',
+                'status' => '1',
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now(),
+            ],
+            [
+                'name' => 'Dress',
+                'parent_id' => '2',
+                'status' => '1',
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now(),
+            ],
+        ];
+        DB::table('categories')->insert($category);
+        $products = [
+            [
+                'name' => 'Black suit',
+                'price' => '15000',
+                'quantity' => '12',
+                'description' => 'Just when you thought iMac had everything.',
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now(),
+            ],
+            [
+                'name' => 'Old suit',
+                'price' => '20000',
+                'quantity' => '12',
+                'description' => 'Just when you thought iMac had everything.',
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now(),
+            ],
+            [
+                'name' => 'Short dress',
+                'price' => '33500',
+                'quantity' => '12',
+                'description' => 'Just when you thought iMac had everything.',
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now(),
+            ],
+            [
+                'name' => 'Prince dress',
+                'price' => '55000',
+                'quantity' => '12',
+                'description' => 'Just when you thought iMac had everything.',
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now(),
+            ],
+            [
+                'name' => 'Hoodies',
+                'price' => '50000',
+                'quantity' => '12',
+                'description' => 'Just when you thought iMac had everything.',
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now(),
+            ],
+            [
+                'name' => 'Black suit 1990',
+                'price' => '75000',
+                'quantity' => '12',
+                'description' => 'Just when you thought iMac had everything.',
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now(),
+            ],
+            [
+                'name' => 'Coast',
+                'price' => '35000',
+                'quantity' => '12',
+                'description' => 'Just when you thought iMac had everything.',
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now(),
             ]
-        );
+        ];
+        DB::table('products')->insert($products);
     }
 }

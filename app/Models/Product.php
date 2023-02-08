@@ -70,6 +70,12 @@ class Product extends Model
         if (request('sort') == 'az') {
             $products->orderBy('name', 'asc');
         }
+        if (request('price') == 'desc') {
+            $products->orderBy('price', 'desc');
+        }
+        if (request('price') == 'asc') {
+            $products->orderBy('price', 'asc');
+        }
 
         return $products;
         
