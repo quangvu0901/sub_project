@@ -4,7 +4,6 @@ namespace App\Http;
 
 
 use App\Http\Middleware\CheckUser;
-use App\Http\Middleware\Cors;
 use Illuminate\Foundation\Http\Kernel as HttpKernel;
 
 class Kernel extends HttpKernel
@@ -25,7 +24,7 @@ class Kernel extends HttpKernel
         \App\Http\Middleware\TrimStrings::class,
         \Illuminate\Foundation\Http\Middleware\ConvertEmptyStringsToNull::class,
         // \Fruitcake\Cors\HandleCors::class,
-        Cors::class,
+        \App\Http\Middleware\Cors::class,
     ];
 
     /**
