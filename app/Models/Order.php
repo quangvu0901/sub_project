@@ -26,6 +26,11 @@ class Order extends Model
         return $this->hasMany(OrderDetail::class, 'order_id', 'id'); 
     }
 
+    public function shipping()
+    {
+        return $this->hasOne(Shipping::class);
+    }
+
     public function scopeSearch($query)
     {
         if ($keyword = request()->keyword) {
