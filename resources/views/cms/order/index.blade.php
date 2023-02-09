@@ -4,8 +4,6 @@
     <div class="bg-light text-center rounded p-4">
         <div class="d-flex align-items-center justify-content-between mb-4">
             <h6 class="mb-0">{{ __('List orders') }}</h6>
-            <a class="btn btn-sm btn-primary" href="{{ route('admin.order.create') }}"><i class="fa fa-plus"></i>
-                {{ __('Add') }}</a>
         </div>
         <div class="table-responsive">
             <table class="table text-center align-middle table-bordered table-hover mb-0">

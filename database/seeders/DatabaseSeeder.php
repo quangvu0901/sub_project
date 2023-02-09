@@ -70,6 +70,7 @@ class DatabaseSeeder extends Seeder
                 'name' => 'Black suit',
                 'price' => '15000',
                 'quantity' => '12',
+                'discount' => '5',
                 'description' => 'Just when you thought iMac had everything.',
                 'created_at' => Carbon::now(),
                 'updated_at' => Carbon::now(),
@@ -78,6 +79,7 @@ class DatabaseSeeder extends Seeder
                 'name' => 'Old suit',
                 'price' => '20000',
                 'quantity' => '12',
+                'discount' => '6',
                 'description' => 'Just when you thought iMac had everything.',
                 'created_at' => Carbon::now(),
                 'updated_at' => Carbon::now(),
@@ -86,6 +88,7 @@ class DatabaseSeeder extends Seeder
                 'name' => 'Short dress',
                 'price' => '33500',
                 'quantity' => '12',
+                'discount' => '7',
                 'description' => 'Just when you thought iMac had everything.',
                 'created_at' => Carbon::now(),
                 'updated_at' => Carbon::now(),
@@ -94,6 +97,7 @@ class DatabaseSeeder extends Seeder
                 'name' => 'Prince dress',
                 'price' => '55000',
                 'quantity' => '12',
+                'discount' => '5',
                 'description' => 'Just when you thought iMac had everything.',
                 'created_at' => Carbon::now(),
                 'updated_at' => Carbon::now(),
@@ -102,6 +106,7 @@ class DatabaseSeeder extends Seeder
                 'name' => 'Hoodies',
                 'price' => '50000',
                 'quantity' => '12',
+                'discount' => '10',
                 'description' => 'Just when you thought iMac had everything.',
                 'created_at' => Carbon::now(),
                 'updated_at' => Carbon::now(),
@@ -110,6 +115,7 @@ class DatabaseSeeder extends Seeder
                 'name' => 'Black suit 1990',
                 'price' => '75000',
                 'quantity' => '12',
+                'discount' => '3',
                 'description' => 'Just when you thought iMac had everything.',
                 'created_at' => Carbon::now(),
                 'updated_at' => Carbon::now(),
@@ -118,11 +124,44 @@ class DatabaseSeeder extends Seeder
                 'name' => 'Coast',
                 'price' => '35000',
                 'quantity' => '12',
+                'discount' => '5',
                 'description' => 'Just when you thought iMac had everything.',
                 'created_at' => Carbon::now(),
                 'updated_at' => Carbon::now(),
             ]
         ];
         DB::table('products')->insert($products);
+
+        $category_product = [
+            [
+                'category_id' => 1,
+                'product_id' => 1
+            ],
+            [
+                'category_id' => 1,
+                'product_id' => 2
+            ],
+            [
+                'category_id' => 5,
+                'product_id' => 3
+            ],
+            [
+                'category_id' => 5,
+                'product_id' => 4
+            ],
+            [
+                'category_id' => 4,
+                'product_id' => 5
+            ],
+            [
+                'category_id' => 1,
+                'product_id' => 6
+            ],
+            [
+                'category_id' => 3,
+                'product_id' => 7
+            ],
+        ];
+        DB::table('category_product')->insert($category_product);
     }
 }
