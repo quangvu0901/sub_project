@@ -11,6 +11,7 @@
                     <tr class="text-dark">
                         <th scope="col">{{ __('#') }}</th>
                         <th scope="col">{{ __('User') }}</th>
+                        <th scope="col">{{ __('Email') }}</th>
                         <th scope="col">{{ __('Total price') }}</th>
                         <th scope="col">{{ __('Status') }}</th>
                         <th scope="col">{{ __('Date') }}</th>
@@ -23,11 +24,13 @@
                             <tr>
                                 <td>{{ $order->id }}</td>
                                 <td>{{ $order->user->name }}</td>
+                                <td>{{ $order->user->email }}</td>
                                 <td>{{ $order->total_price }}</td>
                                 <td>{{ $order->status }}</td>
                                 <td>{{ date('d-m-Y', strtotime($order->created_at)) }}</td>
                                 <td>
-                                    
+                                    <a class="btn btn-sm btn-primary" href="{{ route('admin.order.show', $order->id) }}">Show detai</a>
+
                                 </td>
                             </tr>
                         @endforeach

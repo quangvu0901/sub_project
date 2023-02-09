@@ -76,7 +76,7 @@ class Product extends Model
         if (request('price') == 'asc') {
             $products->orderBy('price', 'asc');
         }
-
+        
         return $products;
         
     }

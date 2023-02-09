@@ -47,7 +47,7 @@ class OrderController extends Controller
                     'product_id' => $obj['product_id'],
                     'quantity' => $obj['quantity'],
                     'product_name' => $products->name,
-                    'product_price' => $products->price
+                    'product_price' => $obj['price']
                 ]);
                 $products->update([
                     'quantity' => $quantity,
@@ -66,10 +66,7 @@ class OrderController extends Controller
 
         return response()->json([
             'status' => 'success',
-            'message' => 'Successfully payment',
-            'oder' => $order,
-            'shipping' => $shipping,
-           
+            'message' => 'Successfully payment',           
         ]);
     }
 
@@ -81,4 +78,6 @@ class OrderController extends Controller
             'order' => $oders
         ]);
     }
+
+    
 }

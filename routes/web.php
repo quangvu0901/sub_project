@@ -67,7 +67,7 @@ Route::middleware(['auth','check_user'])->prefix('/admin')->group(function (){
 
     Route::prefix('orders')->group(function (){
        Route::get('/',[\App\Http\Controllers\OrderController::class,'index'])->name('admin.order');
-       Route::get('/{id}',[\App\Http\Controllers\OrderController::class,'create'])->name('admin.order.show');
+       Route::get('/{id}',[\App\Http\Controllers\OrderController::class,'show'])->name('admin.order.show');
     });
 });
 

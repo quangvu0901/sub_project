@@ -32,7 +32,7 @@ class ProductController extends Controller
 
     function search(Request $request)
     {
-        // $param = $request->input('keyword');
+        
         $result = Product::with('image')->filter()->paginate($request->limit);
         
         if (count($result)) {
@@ -47,5 +47,13 @@ class ProductController extends Controller
         $products = Product::with('images')->find($id);
 
         return  Response()->json($products);
+    }
+
+    public function tag($id)
+    {
+        $product_id = Category::find($id)->products->pluck('id');
+        $products = Product::with('images')->whereIn('id', $product_id)->paginate(Params::LIMIT_SHOW);
+
+        return response()->json($products);
     }
 }

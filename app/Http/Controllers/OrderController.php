@@ -52,7 +52,9 @@ class OrderController extends Controller
      */
     public function show($id)
     {
-        
+        $orders = Order::with('oderDetail', 'shipping')->find($id);
+
+        return view('cms/order/show',compact('orders'));
     }
 
     /**

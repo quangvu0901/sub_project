@@ -40,7 +40,8 @@ Route::middleware('api')->prefix('/products')->group(function(){
 });
 
 Route::middleware('api')->prefix('/categories')->group(function(){
-    Route::get('getCategories',[CategoryController::class,'getCategories']);
+    Route::get('/',[CategoryController::class,'getCategories']);
+    Route::get('/{id}', [ProductController::class,'tag']);
 });
 
 Route::middleware('api')->prefix('/profile')->group(function (){
@@ -49,6 +50,6 @@ Route::middleware('api')->prefix('/profile')->group(function (){
 });
 
 Route::middleware('api')->prefix('order')->group(function () {
-    Route::post('/',[\App\Http\Controllers\Api\OrderController::class,'orderProduct']);
+    Route::post('/',[OrderController::class,'orderProduct']);
     Route::get('/{id}', [OrderController::class, 'show']);
 });
