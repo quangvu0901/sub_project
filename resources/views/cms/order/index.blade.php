@@ -27,12 +27,7 @@
                                 <td>{{ $order->status }}</td>
                                 <td>{{ date('d-m-Y', strtotime($order->created_at)) }}</td>
                                 <td>
-                                    <a class="btn btn-sm btn-success"
-                                        href="{{ route('admin.order.edit', $order->id) }}"><i class="fa fa-pen"></i></a>
-                                    <a class="btn btn-sm btn-danger"
-                                        href="{{ route('admin.order.delete', $order->id) }}"
-                                        onclick="return confirm('Are you sure?')"><i class="fa fa-trash"></i>
-                                    </a>
+                                    
                                 </td>
                             </tr>
                         @endforeach
