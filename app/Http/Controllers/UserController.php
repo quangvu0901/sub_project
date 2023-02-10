@@ -9,7 +9,7 @@ use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Services\UserService;
-
+use Illuminate\Support\Facades\Hash;
 
 class UserController extends Controller
 {
@@ -49,18 +49,13 @@ class UserController extends Controller
      */
     public function store(UserRequest $request)
     {
-        DB::beginTransaction();
-        try {
-            $this->service->createUser($request);
-            DB::commit();
+        $data = $request->all();
+        $users = new User();
+        $data['password'] = Hash::make($request->password);
+        $users->fill($data);
+        $users->save();
 
-            return Redirect('admin/users');
-        }
-        catch (\Exception $e){
-            DB::rollBack();
-            throw new \Exception($e->getMessage());
-        }
-
+        return Redirect('admin/users');
     }
 
     /**
@@ -95,21 +90,12 @@ class UserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(UserRequest $request, $id)
     {
-        DB::beginTransaction();
-        try {
-            $data = $request->all();
-            $users = User::find($id)->update($data);
-            DB::commit();
+        $data = $request->all();
+        $users = User::find($id)->update($data);
 
-            return redirect('admin/users');
-        }
-        catch (\Exception $e){
-            DB::rollBack();
-
-            return redirect('admin/users')->with('error',$e->getMessage());
-        }
+        return redirect('admin/users');
     }
 
     /**

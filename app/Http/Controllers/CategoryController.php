@@ -42,23 +42,13 @@ class CategoryController extends Controller
      */
     public function store(Request $request)
     {
-        DB::beginTransaction();
-        try {
-            $data = $request->all();
-            $categories = new Category();
-            $categories->fill($data);
-            $categories->save();
 
-            DB::commit();
+        $data = $request->all();
+        $categories = new Category();
+        $categories->fill($data);
+        $categories->save();
 
-            return redirect('admin/categories');
-        } catch (\Exception $e) {
-            DB::rollBack();
-
-            return $e->getMessage();
-        }
-
-
+        return redirect('admin/categories');
     }
 
     /**
@@ -83,7 +73,7 @@ class CategoryController extends Controller
 
         $categories = Category::find($id);
         $cats = Category::all();
-        return view('cms/category/edit', compact('categories','cats'));
+        return view('cms/category/edit', compact('categories', 'cats'));
     }
 
     /**
@@ -95,20 +85,12 @@ class CategoryController extends Controller
      */
     public function update(Request $request, $id)
     {
-        DB::beginTransaction();
-        try {
-            $data = $request->all();
-            $categories = Category::find($id);
-            $categories->fill($data);
-            $categories->update();
-            DB::commit();
+        $data = $request->all();
+        $categories = Category::find($id);
+        $categories->fill($data);
+        $categories->update();
 
-            return redirect('admin/categories');
-        } catch (\Exception $e) {
-            DB::rollBack();
-
-            return redirect('admin/categories');
-        }
+        return redirect('admin/categories');
     }
 
     /**
