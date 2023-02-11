@@ -29,7 +29,7 @@
                                 <td>{{ $order->status }}</td>
                                 <td>{{ date('d-m-Y', strtotime($order->created_at)) }}</td>
                                 <td>
-                                    <a class="btn btn-sm btn-primary" href="{{ route('admin.order.show', $order->id) }}">Show detai</a>
+                                    <a class="btn btn-sm btn-primary" href="{{ route('admin.order.show', $order->id) }}">{{ __('Show detai') }}</a>
 
                                 </td>
                             </tr>

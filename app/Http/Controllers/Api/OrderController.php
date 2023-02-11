@@ -9,6 +9,7 @@ use App\Models\Shipping;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
+use App\Notifications\InvoicePaid;
 
 class OrderController extends Controller
 {
@@ -18,10 +19,8 @@ class OrderController extends Controller
     }
     public function orderProduct(Request $request)
     {
-        // dd($request->all());
         DB::beginTransaction();
         try {
-
             $user_id = auth()->user()->id;
             $total_price = $request['total_price'];
             $order = new Order();
@@ -53,6 +52,10 @@ class OrderController extends Controller
                     'quantity' => $quantity,
                 ]);
             }
+
+            $user = auth()->user();
+            $user->notify(new InvoicePaid());
+            
             DB::commit();
         } catch (\Exception $e) {
             DB::rollBack();
@@ -66,18 +69,29 @@ class OrderController extends Controller
 
         return response()->json([
             'status' => 'success',
-            'message' => 'Successfully payment',           
+            'message' => 'Successfully payment',
         ]);
     }
 
     public function show($id)
     {
-        $oders = Order::with('oderDetail', 'shipping')->find($id);
+        $user_id = auth()->user()->id;
+        $oders = Order::with('oderDetail', 'shipping')->where('user_id', $user_id)->find($id);
 
         return response()->json([
             'order' => $oders
         ]);
     }
 
-    
+    public function sendMail()
+    {
+        $user = auth()->user();
+        $user->notify(new InvoicePaid());
+
+
+        return response()->json([
+            'status' => 'success',
+            'message' => 'Successfully payment',
+        ]);
+    }
 }

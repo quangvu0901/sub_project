@@ -53,7 +53,7 @@
                     <div class="position-relative">
                         @php
                             if (!isset(auth()->user()->profile->avatar)) {
-                                echo '<img src="'.asset("img/user.jpg").'" class="rounded-circle" style="width:50px;;border: 1px solid">';
+                                echo '<img src="' . asset('img/user.jpg') . '" class="rounded-circle" style="width:50px;;border: 1px solid">';
                             } else {
                                 echo '<img src="uploads/' . auth()->user()->profile->avatar . '" style="width:50px;border: 1px solid" class="rounded-circle">';
                             }
@@ -108,7 +108,7 @@
 
                             @php
                                 if (!isset(auth()->user()->profile->avatar)) {
-                                    echo '<img src="'.asset("img/user.jpg").'" style="width:50px;border: 1px solid" class="rounded-circle">';
+                                    echo '<img src="' . asset('img/user.jpg') . '" style="width:50px;border: 1px solid" class="rounded-circle">';
                                 } else {
                                     echo '<img src="uploads/' . auth()->user()->profile->avatar . '" style="width:50px;border: 1px solid" class="rounded-circle">';
                                 }
