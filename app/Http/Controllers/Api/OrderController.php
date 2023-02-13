@@ -19,7 +19,7 @@ class OrderController extends Controller
     }
     public function orderProduct(Request $request)
     {
-        dd(1);
+        
         DB::beginTransaction();
         try {
             $user_id = auth()->user()->id;
