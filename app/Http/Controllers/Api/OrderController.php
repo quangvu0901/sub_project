@@ -54,8 +54,8 @@ class OrderController extends Controller
                 ]);
             }
 
-            $user = auth()->user();
-            $user->notify(new InvoicePaid());
+            // $user = auth()->user();
+            // $user->notify(new InvoicePaid());
 
             DB::commit();
         } catch (\Exception $e) {
@@ -74,17 +74,17 @@ class OrderController extends Controller
         ]);
     }
 
-    public function sendMail()
-    {
-        $user = auth()->user();
-        $user->notify(new InvoicePaid());
+    // public function sendMail()
+    // {
+    //     $user = auth()->user();
+    //     $user->notify(new InvoicePaid());
 
 
-        return response()->json([
-            'status' => 'success',
-            'message' => 'Successfully order',
-        ]);
-    }
+    //     return response()->json([
+    //         'status' => 'success',
+    //         'message' => 'Successfully order',
+    //     ]);
+    // }
 
     public function bought()
     {
