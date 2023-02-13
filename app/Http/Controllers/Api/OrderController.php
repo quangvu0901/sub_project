@@ -64,7 +64,6 @@ class OrderController extends Controller
             return response()->json([
                 'status' => 'Error',
                 'message' => 'False payment',
-
             ]);;
         }
 
@@ -73,18 +72,6 @@ class OrderController extends Controller
             'message' => 'Successfully payment',
         ]);
     }
-
-    // public function sendMail()
-    // {
-    //     $user = auth()->user();
-    //     $user->notify(new InvoicePaid());
-
-
-    //     return response()->json([
-    //         'status' => 'success',
-    //         'message' => 'Successfully order',
-    //     ]);
-    // }
 
     public function bought()
     {

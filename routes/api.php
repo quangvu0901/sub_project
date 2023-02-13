@@ -53,7 +53,7 @@ Route::middleware('api')->prefix('/profile')->group(function (){
 Route::middleware('api')->prefix('/order')->group(function () {
     Route::post('/',[OrderController::class,'orderProduct']);
     Route::get('abc',[OrderController::class,'bought']);
-    Route::post('send_mail', [OrderController::class, 'sendMail']);
+    // Route::post('send_mail', [OrderController::class, 'sendMail']);
     Route::get('/{id}', [OrderController::class, 'show']);
 
 });
