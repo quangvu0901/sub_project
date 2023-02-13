@@ -13,7 +13,7 @@
             <div class="py-2 ">
                 <label class="w-100 h6">{{ __('Category level') }}</label>
                 <select class="w-100 h8" name="parent_id" >
-                    <option value="{{ \App\Constants\Category::PARENT_CATEGOGY }}">{{ __('---Parent category---') }}</option>
+                    <option value="{{ \App\Constants\Category::PARENT_CATEGORY }}">{{ __('---Parent category---') }}</option>
                     @foreach($cats as $cat)
                         <option {{ $cat->id==$categories->parent_id ? "selected":"" }} value="{{ $cat->id }}">{{ $cat->name }}</option>
                     @endforeach

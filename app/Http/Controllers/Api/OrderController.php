@@ -19,6 +19,7 @@ class OrderController extends Controller
     }
     public function orderProduct(Request $request)
     {
+        dd(1);
         DB::beginTransaction();
         try {
             $user_id = auth()->user()->id;
@@ -55,7 +56,7 @@ class OrderController extends Controller
 
             $user = auth()->user();
             $user->notify(new InvoicePaid());
-            
+
             DB::commit();
         } catch (\Exception $e) {
             DB::rollBack();
@@ -73,16 +74,6 @@ class OrderController extends Controller
         ]);
     }
 
-    public function show($id)
-    {
-        $user_id = auth()->user()->id;
-        $oders = Order::with('oderDetail', 'shipping')->where('user_id', $user_id)->find($id);
-
-        return response()->json([
-            'order' => $oders
-        ]);
-    }
-
     public function sendMail()
     {
         $user = auth()->user();
@@ -91,7 +82,29 @@ class OrderController extends Controller
 
         return response()->json([
             'status' => 'success',
-            'message' => 'Successfully payment',
+            'message' => 'Successfully order',
+        ]);
+    }
+
+    public function bought()
+    {
+        $order = auth()->user()->orders;
+        
+        return response()->json([
+            'status' => 'success',
+            'message' => 'Successfully',
+            'orders' => $order
+        ]);
+    }
+
+
+    public function show($id)
+    {
+        $user_id = auth()->user()->id;
+        $orders = Order::with('oderDetail', 'shipping')->where('user_id', $user_id)->find($id);
+
+        return response()->json([
+            'order' => $orders
         ]);
     }
 }

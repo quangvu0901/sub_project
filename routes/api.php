@@ -5,6 +5,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Api\CategoryController;
 use App\Http\Controllers\Api\OrderController;
+use App\Models\Order;
 
 /*
 |--------------------------------------------------------------------------
@@ -49,9 +50,11 @@ Route::middleware('api')->prefix('/profile')->group(function (){
     Route::post('updateUser',[\App\Http\Controllers\Api\ProfileController::class,'update']);
 });
 
-Route::middleware('api')->prefix('order')->group(function () {
+Route::middleware('api')->prefix('/order')->group(function () {
     Route::post('/',[OrderController::class,'orderProduct']);
-    Route::get('/{id}', [OrderController::class, 'show']);
+    Route::get('abc',[OrderController::class,'bought']);
     Route::post('send_mail', [OrderController::class, 'sendMail']);
+    Route::get('/{id}', [OrderController::class, 'show']);
+
 });
 

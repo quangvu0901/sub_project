@@ -9,9 +9,8 @@
     $shipping = App\Models\Shipping::where('order_id', $order_id)
         ->orderBy('created_at', 'desc')
         ->first();
-    // dd($shipping->name);
     $i = 1;
-    // dd($order_detail_id);
+    
 @endphp
 
 {{-- @dd($order) --}}
@@ -39,7 +38,7 @@
 
                 <b>{{ __('Date: ') }}</b> {{ date('d-m-Y H:i:s', strtotime($order->created_at)) }}
             </div><br />
-            
+
         </tr>
         <tr style="font-size: 18px; margin-left: 100px">
             @foreach ($order_details as $order_detail)
