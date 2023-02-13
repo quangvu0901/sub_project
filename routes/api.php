@@ -51,5 +51,5 @@ Route::middleware('api')->prefix('/profile')->group(function (){
 
 Route::middleware('api')->prefix('order')->group(function () {
     Route::post('/',[OrderController::class,'orderProduct']);
-    Route::get('/{id}', [OrderController::class, 'show']);
+    Route::get('/{id}', [OrderController::class, 'showAbcd']);
 });
