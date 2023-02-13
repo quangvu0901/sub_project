@@ -66,18 +66,22 @@ class OrderController extends Controller
 
         return response()->json([
             'status' => 'success',
-            'message' => 'Successfully payment',           
+            'message' => 'Successfully payment',
         ]);
     }
 
+    public function bought()
+    {
+        $orders = auth()->user()->orders;
+
+        return response()->json(['orders'=>$orders]);
+    }
     public function show($id)
     {
-        $oders = Order::with('oderDetail', 'shipping')->find($id);
+        $orders = Order::with('oderDetail', 'shipping')->find($id);
 
         return response()->json([
-            'order' => $oders
+            'order' => $orders
         ]);
     }
-
-    
 }
