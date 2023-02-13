@@ -70,10 +70,15 @@ class User extends Authenticatable implements JWTSubject
         return $this->hasOne(ProfileUser::class, 'user_id', 'id');
     }
 
+    public function orders()
+    {
+        return $this->hasMany(Order::class);
+    }
+
     public function scopeSearch($query)
     {
         if ($keyword = request()->keyword) {
-            $query = $query->where('name', 'like', '%'.$keyword.'%');
+            $query = $query->where('name', 'like', '%' . $keyword . '%');
         }
 
         return $query;
